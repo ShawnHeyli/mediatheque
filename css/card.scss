@@ -1,0 +1,120 @@
+@use 'design';
+
+* { box-sizing: border-box; }
+
+$transition: 0.5s;
+
+.card {
+    position: relative;
+    width: 240px;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 15px 35px rgba(0,0,0, 0.25);
+    transition: box-shadow $transition;
+    color: design.$Headline;
+
+    .poster {
+        position: relative;
+        img{
+            width: 100%;
+            transition: $transition;
+        }
+    }
+    .poster::before {
+        content: '';
+        position: absolute;
+        bottom: -100px;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, #000 50%, transparent);
+        transition: $transition;
+        z-index: 1;
+    }
+
+    .description {
+        position: absolute;
+        bottom: -125px; //pbs plus tards
+        left: 0;
+        padding: 20px;
+        width: 100%;
+        z-index: 2;
+        transition: $transition;
+
+        h3 {
+            font-size: 20px;
+        }
+
+        .rating {
+            padding: 2px;
+            font-size: 16px;
+
+            svg {
+                width: 18px;
+                fill: design.$Highlight;
+            }
+        }
+
+        .infos {
+            font-size: 14px;
+            
+            .reviewCount::after {
+                content: ' | ';
+            }
+            .hours::after {
+                content: 'h';
+            }
+            .minutes::after {
+                content: 'mins | ';
+            }
+            .day::after {
+                content: '/';
+            }
+            .month::after {
+                content: '/';
+            }
+            .year::after {
+                content: '';
+            }
+        }
+
+        .tags {
+            position: relative;
+            margin-top: 5px;
+            
+
+            span {
+                padding: 2px 5px;
+                background: design.$Highlight;
+                border-radius: 5px;
+                + span {
+                    margin-left: 5px;
+                }
+            }
+        }
+
+        .synopsis {
+            margin-top: 10px;
+            color: design.$Paragraph;
+            font-size: 14px;
+        }
+    }
+}
+
+.card:hover {
+    box-shadow: 0px 15px 50px rgba(0,0,0, 0.5);
+
+    .poster {
+        img{
+            transform: translateY(-25px);
+            filter: blur(3px);
+        }
+    }
+    .poster::before {
+        bottom: 0px;
+    }
+    
+    .description {
+        bottom: 0px;
+    }
+}
