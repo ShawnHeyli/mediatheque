@@ -1,3 +1,4 @@
+import React from 'react'
 import 'css/card.scss'
 
 export default function Card() {
