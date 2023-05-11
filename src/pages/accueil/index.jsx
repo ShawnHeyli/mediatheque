@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from './components/navbar'
+import NavBar from '@/components/navbar'
 
 export default function Home() {
     return (
@@ -31,7 +31,6 @@ export default function Home() {
                 <p>a</p>
                 <p>a</p>
                 <p>a</p>
-
             </div>
         </main>
     )
