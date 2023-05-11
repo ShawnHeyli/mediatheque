@@ -1,10 +1,13 @@
 import Image from 'next/image'
 import React from 'react'
 import styles from './page.module.css'
+import NavBar from './components/navbar'
 
 export default function Home() {
   return (
+    
     <main className={styles.main}>
+      <NavBar/>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
@@ -52,6 +55,62 @@ export default function Home() {
           </h2>
           <p>Find in-depth information about Next.js features and API.</p>
         </a>
+        <a
+          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Docs <span>-&gt;</span>
+          </h2>
+          <p>Find in-depth information about Next.js features and API.</p>
+        </a>
+        <a
+          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Docs <span>-&gt;</span>
+          </h2>
+          <p>Find in-depth information about Next.js features and API.</p>
+        </a>
+        <a
+          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Docs <span>-&gt;</span>
+          </h2>
+          <p>Find in-depth information about Next.js features and API.</p>
+        </a>
+        <a
+          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Docs <span>-&gt;</span>
+          </h2>
+          <p>Find in-depth information about Next.js features and API.</p>
+        </a>
+        <a
+          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Docs <span>-&gt;</span>
+          </h2>
+          <p>Find in-depth information about Next.js features and API.</p>
+        </a>
+        
 
         <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
