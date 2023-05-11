@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import styles from './page.module.css'
 import Card from'./card.jsx'
-import NavBar from './components/navbar'
+import NavBar from '@/components/navbar'
 
 
 export default function Home() {
