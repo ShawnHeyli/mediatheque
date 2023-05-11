@@ -1,7 +1,7 @@
 import React from 'react'
 import './card.scss'
 
-export default function Card(movie) {
+export default function Card() {
     return <article className="card">
         <div className="poster">
             <img src="https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/1280x1280/products/89058/93685/Joker-2019-Final-Style-steps-Poster-buy-original-movie-posters-at-starstills__62518.1669120603.jpg?c=2"/>
