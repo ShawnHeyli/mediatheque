@@ -3,8 +3,8 @@ import Card from '@/components/card/card.jsx'
 import './movieList.scss'
 
 const API_KEY ="437c55c81dfb6a83ad6d2652bc7b2e28";
-const API_POPULAR = "https://api.themoviedb.org/3/movie/popular?api_key=" + API_KEY;
-const API_LATEST = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + API_KEY;
+//const API_POPULAR = "https://api.themoviedb.org/3/movie/popular?api_key=" + API_KEY;
+//const API_LATEST = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + API_KEY;
 
 export default function MovieList(props) {
     const [movies, setMovies] = useState([])
