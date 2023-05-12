@@ -1,0 +1,69 @@
+@use '../design';
+
+$transition: 1s;
+$transitionButton: 0.5s;
+
+.movieList {
+    padding: 20px;
+
+    h1 {
+        font-size: 30px;
+        font-family: design.$font_title;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .cardList {
+        grid-auto-flow: column;
+        display: grid;
+        place-items: center center;
+        gap: 20px;
+
+        .button {
+            background-color: design.$Secondary;
+            border-radius: 20px;
+            width: 50px;
+            height: 180px;
+            border: none;
+            transition: $transitionButton;
+            text-align: center;
+
+            svg {
+                margin-top: 60px;
+                width: 35px;
+                fill: design.$Button_text;
+                transition: $transitionButton;
+            }
+        }
+    
+        .cardBox{
+            width: 100%;
+            overflow-x: hidden;
+            background-color: design.$Background;
+            border-radius: 20px;
+            padding: 10px;
+        
+            .cardElements{
+                display: grid;
+                grid-auto-flow: column;
+                gap: 10px;
+                overscroll-behavior-inline: contain;
+                transition: $transition;
+            }
+        }
+    }
+}
+
+.movieList:hover {
+    .cardList:hover {
+        .button:hover {
+            height: 200px;
+            background-color: design.$Highlight;
+    
+            svg {
+                width: 45px;
+                fill: design.$Button_text;
+            }
+        }
+    }
+}

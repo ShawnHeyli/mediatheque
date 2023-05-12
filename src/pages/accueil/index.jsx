@@ -1,14 +1,14 @@
 "use client"
 
-
-import Layout from '@/components/layouts/layout'
 import React from 'react'
-import CardList from '@/components/cardList/cardList'
+import Layout from '@/components/layouts/layout'
+import MovieList from '@/components/movieList/movieList.jsx'
 
 export default function Home() {
     return (
         <Layout>
-                <CardList/>
+            <MovieList request="popular" title="Popular Movies"/>
+            <MovieList request="now_playing" title="Recent Movies"/>
         </Layout>
     )
 }
