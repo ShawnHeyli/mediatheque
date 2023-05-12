@@ -18,6 +18,6 @@ export default function CardList() {
 
     return <div className="cardList">
         {movies.map((movie)=>
-            <Card id={movie.id}/>)}
+            <div key={movie.id} name={movie.title} id={movie.id}><Card id={movie.id}/></div>)}
     </div>
 }

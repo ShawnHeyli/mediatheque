@@ -15,7 +15,7 @@ export default function Card(props) {
         })
       }, [])
 
-    return <article className="card" name={movie.title} id={movie.id}>
+    return <article className="card">
         <div className="poster">
             <img src={API_IMG + movie.poster_path}/>
         </div>
