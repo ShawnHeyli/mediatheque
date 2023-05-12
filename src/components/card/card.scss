@@ -1,7 +1,5 @@
 @use '../design';
 
-* { box-sizing: border-box; }
-
 $transition: 0.5s;
 
 .card {
@@ -34,9 +32,9 @@ $transition: 0.5s;
 
     .description {
         position: absolute;
-        bottom: -125px; //pbs plus tards
+        bottom: -125px;
         left: 0;
-        padding: 20px;
+        padding: 20px 18px;
         width: 100%;
         z-index: 2;
         transition: $transition;
@@ -67,15 +65,6 @@ $transition: 0.5s;
             .minutes::after {
                 content: 'mins | ';
             }
-            .day::after {
-                content: '/';
-            }
-            .month::after {
-                content: '/';
-            }
-            .year::after {
-                content: '';
-            }
         }
 
         .tags {
@@ -97,6 +86,11 @@ $transition: 0.5s;
             margin-top: 10px;
             color: design.$Paragraph;
             font-size: 14px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            min-height: 105px;
         }
     }
 }

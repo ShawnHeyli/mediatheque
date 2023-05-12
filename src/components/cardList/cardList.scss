@@ -1,0 +1,11 @@
+@use '../design';
+
+$transition: 0.5s;
+
+.cardList {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 260px;
+    overflow-x: hidden;
+    overscroll-behavior-inline: contain;
+}

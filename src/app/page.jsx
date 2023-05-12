@@ -1,7 +1,9 @@
+"use client"
+
 import Image from 'next/image'
 import React from 'react'
 import styles from './page.module.css'
-import Card from'@/components/card/card.jsx'
+import CardList from '@/components/cardList/cardList.jsx'
 import NavBar from '@/components/navbar/navbar'
 
 
@@ -36,9 +38,7 @@ export default function Home() {
 
       
       <div className={styles.center}>
-        <Card/>
-        <Card/>
-        <Card/>
+        <CardList/>
       </div>
 
       <div className={styles.center}>
