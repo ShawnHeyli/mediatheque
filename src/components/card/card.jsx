@@ -36,7 +36,7 @@ export default function Card(props) {
             </div>
             <div className="tags">
                 {movie.genres?.map((genre)=>
-                    <div className="tag">{genre.name}</div>)}
+                    <div className="tag" key={genre.id}>{genre.name}</div>)}
             </div>
             <div className="synopsis">
                 {movie.overview}
