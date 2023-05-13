@@ -4,19 +4,20 @@ import './card.scss'
 const API_KEY ="437c55c81dfb6a83ad6d2652bc7b2e28";
 const API_IMG="https://image.tmdb.org/t/p/w500/";
 
-export default function Card(props) {
+export default function Card({id}) {
     const [movie, setMovie] = useState([])
 
     //recup le film
     useEffect(() => {
-        fetch("https://api.themoviedb.org/3/movie/" + props.id + "?api_key=" + API_KEY)
+        fetch("https://api.themoviedb.org/3/movie/" + id + "?api_key=" + API_KEY)
         .then((res)=>res.json())
         .then(data=>{
           setMovie(data);
         })
       }, [])
 
-    return <article className="card">
+    return (
+    <article className="card">
         <div className="poster">
             <img src={API_IMG + movie.poster_path}/>
         </div>
@@ -42,5 +43,6 @@ export default function Card(props) {
                 {movie.overview}
             </div>
         </div>
-    </article>;
+    </article>
+    )
 }

@@ -1,10 +1,16 @@
+@use '../design';
+
+header {
+    height: 50px;
+}
+
 ul {
     z-index: 10;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #010101;
+    background-color: design.$Stroke;
     position: fixed;
     top: 0;
     left: 0;
@@ -19,7 +25,7 @@ li {
 
 li a {
     display: block;
-    color: #fffffe;
+    color: design.$Main;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -30,11 +36,11 @@ li a:hover {
 }
 
 .active {
-    background-color: #7f5af0;
+    background-color: design.$Highlight;
 }
 
 .active:hover {
-    background-color: #010101;
+    background-color: design.$Stroke;
 }
 
 .user {

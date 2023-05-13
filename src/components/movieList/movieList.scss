@@ -5,12 +5,14 @@ $transitionButton: 0.5s;
 
 .movieList {
     padding: 20px;
+    width: 100%;
+    display: grid;
+    place-items: center center;
 
     h1 {
         font-size: 30px;
         font-family: design.$font_title;
         text-align: center;
-        padding: 10px;
     }
 
     .cardList {
