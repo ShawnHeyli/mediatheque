@@ -1,4 +1,4 @@
-import React,{useLayoutEffect,useState,useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import Card from '@/components/card/card.jsx'
 import './movieList.scss'
 
@@ -11,25 +11,29 @@ export default function MovieList(props) {
     const [index, setIndex] = useState(0);
     const [cardSize, setSize] = useState(0);
 
-    //resize la liste quand on resize la fenetre
-    useLayoutEffect(() => {
-      function updateSize() {
-        setSize(Math.max(Math.floor((window.innerWidth-318)/250), 1));
-      }
-      window.addEventListener('resize', updateSize);
-      updateSize();
-    }, []);
-
-    var request = "https://api.themoviedb.org/3/movie/" + props.request + "?api_key=" + API_KEY;
-
-    //recup les films
     useEffect(() => {
-      fetch(request)
+      //recup les films
+      fetch("https://api.themoviedb.org/3/movie/" + props.request + "?api_key=" + API_KEY)
       .then((res)=>res.json())
       .then(data=>{
         setMovies(data.results);
-      })
-    }, [])
+      });
+
+      //change la taille de la liste dynamiquement
+      window.addEventListener('resize', updateSize);
+      updateSize();
+
+      return () => window.removeEventListener("resize", updateSize);
+    }, [movies])
+
+    //change la taille de la liste
+    function updateSize() {
+      setSize(Math.max(Math.floor((window.innerWidth-318)/250), 1));
+      var maxSize = movies.length - cardSize;
+      if (index > maxSize) {
+        setIndex(maxSize);
+      }
+    }
 
     //change index du film
     function updateIndex(newIndex) {
@@ -43,7 +47,7 @@ export default function MovieList(props) {
 
     return <div className="movieList">
       <h1>
-          {props.title} {cardSize}
+          {props.title}
       </h1>
       <div className="cardList" style={{width: cardSize * 250 + 130}}>
         <div className="button" onClick={() => {updateIndex(index - 1)}}>
