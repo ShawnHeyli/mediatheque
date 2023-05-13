@@ -83,14 +83,15 @@ $transition: 0.5s;
         }
 
         .synopsis {
-            color: design.$Paragraph;
-            font-size: 14px;
-            overflow: hidden;
+            margin-top: 10px;
+            height: 96px;
             display: -webkit-box;
             -webkit-line-clamp: 6;
             -webkit-box-orient: vertical;
-            margin-top: 10px;
-            height: 90px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            color: design.$Paragraph;
+            font-size: 14px;
         }
     }
 }
