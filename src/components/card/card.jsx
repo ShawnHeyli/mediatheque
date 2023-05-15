@@ -40,7 +40,9 @@ export default function Card({id}) {
                     <div className="tag" key={genre.id}>{genre.name}</div>)}
             </div>
             <div className="synopsis">
-                {movie.overview}
+                <div className="overview">
+                    {movie.overview}
+                </div>
             </div>
         </div>
     </article>

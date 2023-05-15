@@ -33,7 +33,7 @@ $transition: 0.5s;
 
     .description {
         position: absolute;
-        bottom: -110px;
+        bottom: -115px;
         padding: 16px;
         z-index: 2;
         transition: $transition;
@@ -84,14 +84,17 @@ $transition: 0.5s;
 
         .synopsis {
             margin-top: 10px;
-            height: 95px;
-            display: -webkit-box;
-            -webkit-line-clamp: 6;
-            -webkit-box-orient: vertical;
-            text-overflow: ellipsis;
+            height: 100px;
             overflow: hidden;
-            color: design.$Paragraph;
-            font-size: 14px;
+            .overview {
+                display: -webkit-box;
+                -webkit-line-clamp: 6;
+                -webkit-box-orient: vertical;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                color: design.$Paragraph;
+                font-size: 14px;
+            }
         }
     }
 }
