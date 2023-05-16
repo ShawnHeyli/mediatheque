@@ -1,5 +1,4 @@
 // TEMPORARY, while waiting for a global layout
-@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 
 * {
   box-sizing: border-box;
@@ -22,11 +21,11 @@ body {
   align-items: center;
   height: 100vh;
 
-  background: no-repeat url("/images/login/background.jpg");
+  background: no-repeat url("/images/login/background2.jpg");
   background-size: cover;
   &_form {
     width: 20%;
-    background-color: #fff;
+    background-color: #fffffe;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -37,3 +36,32 @@ body {
     align-items: center;
   }
 }
+
+.link{
+  color: #2cb67d;
+  transition: 0.3s;
+}
+
+.link:hover{
+  color: #7f5af0;
+  transition: 0.3s;
+}
+
+.login_form{
+  background-color: #010101;
+  color: #fffffe;
+}
+
+.se_connecter:hover{
+  background-color: #2cb67d;
+  transition: 0.3s;
+}
+
+.se_connecter{
+  transition: 0.3s;
+}
+
+.input{
+  color: #fffffe;
+}
+

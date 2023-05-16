@@ -1,9 +1,17 @@
+@use '../design';
+
 footer {
     bottom: 0;
     width: 100%;
     padding-bottom: 2%;
     background-color: #010101;
     border-top: 0.5em solid #7f5af0;
+    transition: 0.3s;
+}
+
+footer:hover{
+    border-top: 0.5em solid design.$Tertiary;
+    transition: 0.3s;
 }
 
 a {

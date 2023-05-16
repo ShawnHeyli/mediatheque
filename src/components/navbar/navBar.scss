@@ -16,7 +16,12 @@ ul {
     left: 0;
     width: 100%;
     border-bottom: 0.5em solid #7f5af0;
-    
+    transition: 0.3s;
+}
+
+ul:hover {
+    border-bottom: 0.5em solid design.$Tertiary;
+    transition: 0.3s;
 }
 
 li {
@@ -29,18 +34,22 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    transition: 0.3s;
 }
 
 li a:hover {
-    background-color: #242629;
+    background-color: design.$Tertiary;
+    transition: 0.3s;
 }
 
 .active {
     background-color: design.$Highlight;
+    transition: 0.3s;
 }
 
 .active:hover {
-    background-color: design.$Stroke;
+    background-color: design.$Tertiary;
+    transition: 0.3s;
 }
 
 .user {
