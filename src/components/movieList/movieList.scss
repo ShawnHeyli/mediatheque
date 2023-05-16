@@ -22,11 +22,10 @@ $transitionButton: 0.5s;
         gap: 20px;
 
         .button {
-            background-color: design.$Secondary;
+            background-color: design.$Button;
             border-radius: 20px;
             width: 50px;
             height: 180px;
-            border: none;
             transition: $transitionButton;
             text-align: center;
 
@@ -59,7 +58,7 @@ $transitionButton: 0.5s;
     .cardList:hover {
         .button:hover {
             height: 200px;
-            background-color: design.$Highlight;
+            background-color: design.$Tertiary;
     
             svg {
                 width: 45px;
