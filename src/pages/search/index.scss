@@ -12,23 +12,26 @@ body {
   display: grid;
   grid-auto-flow: row;
   width: 100%;
+  min-height: 100vh;
   padding-top: 20px;
+  text-align: center;
 
-  .searchBarBox {
+  .searchBar {
     display: flex;
     justify-content: center;
 
-    .searchBar {
+    form {
       display: flex;
       justify-content: center;
       background-color: design.$Highlight;
       height: 40px;
-      width: 540px;
+      width: 560px;
       border-radius: 20px;
       transition: $transition;
 
       .searchTerm {
-        margin-left: 20px;
+        padding: 0;
+        margin-left: 10px;
         font-size: 16px;
         font-family: design.$font_title;
         color: design.$Main;
@@ -41,20 +44,20 @@ body {
           color: design.$Main;
         }
       }
-      input::placeholder{
-        color: design.$Main;
+      .searchTerm::placeholder{
+        color: rgba(design.$Main, 50%);
       }
 
-      .button {
+      button {
         display: flex;
         align-items: center;
         justify-content: center;
         background-color: transparent;
         border-radius: 20px;
-        margin-right: 10px;
         width: 40px;
         height: 40px;
         transition: $transition;
+        border: 0;
 
         svg {
             width: 20px;
@@ -76,10 +79,10 @@ body {
 
 
 .search:hover {
-  .searchBar:hover {
+  form:hover {
     background-color: design.$Tertiary;
 
-    .button:hover {
+    button:hover {
       svg {
         width: 24px;
       }
