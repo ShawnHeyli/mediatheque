@@ -9,14 +9,6 @@
 
 ### Development
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
 Add a `.env.local` file similar to the following:
 
 > We need a privileged API key for the `supabase` client to work.
@@ -26,6 +18,14 @@ Add a `.env.local` file similar to the following:
 # .env.local
 NEXT_PUBLIC_SUPABASE_URL=<your supabase url>
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<priviledged API key>
+```
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
 You can now open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
