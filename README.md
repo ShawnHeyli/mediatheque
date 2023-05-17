@@ -16,8 +16,8 @@ Add a `.env.local` file similar to the following:
 
 ```bash
 # .env.local
-NEXT_PUBLIC_SUPABASE_URL=<your supabase url>
-NEXT_PUBLIC_SUPABASE_ANON_KEY=<priviledged API key>
+SUPABASE_URL=<your supabase url>
+SUPABASE_ANON_KEY=<priviledged API key>
 ```
 
 ```bash
