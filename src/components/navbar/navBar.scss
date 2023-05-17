@@ -1,58 +1,62 @@
 @use '../design';
 
-header {
-    height: 50px;
-}
+$transition: 0.3s;
 
-ul {
+.navBar {
     z-index: 10;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    position: fixed;
     overflow: hidden;
     background-color: design.$Stroke;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
     border-bottom: 0.5em solid #7f5af0;
-    transition: 0.3s;
+    transition: $transition;
+
+    .logo{
+        flex: 1;
+        display: block;
+
+        a {
+            float: left;
+            justify-content: center;
+            color: design.$Main;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+    }
+
+    .searchBar {
+        flex: 1;
+    }
+
+    .user {
+        flex: 1;
+        display: block;
+
+        a {
+            float: right;
+        }
+    }
+
+    a {
+        transition: $transition;
+    }
 }
 
-ul:hover {
+.navBar:hover {
     border-bottom: 0.5em solid design.$Tertiary;
-    transition: 0.3s;
-}
 
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: design.$Main;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-li a:hover {
-    background-color: design.$Tertiary;
-    transition: 0.3s;
+    a:hover {
+        background-color: design.$Tertiary;
+    }
 }
 
 .active {
     background-color: design.$Highlight;
-    transition: 0.3s;
 }
-
 .active:hover {
     background-color: design.$Tertiary;
-    transition: 0.3s;
 }
-
-.user {
-    float: right;
-}
-

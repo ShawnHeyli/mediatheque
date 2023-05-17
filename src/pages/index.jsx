@@ -3,6 +3,7 @@
 import React from 'react'
 import Layout from '@/components/layouts/layout'
 import MovieList from '@/components/movieList/movieList.jsx'
+import '@/app/globals.css';
 
 export default function Home() {
     return (

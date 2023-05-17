@@ -2,90 +2,22 @@
 
 $transition: 0.5s;
 
-html,
 body {
   padding: 0;
   margin: 0;
 }
 
-.search {
+.searchResults {
   display: grid;
-  grid-auto-flow: row;
-  width: 100%;
+  grid-template-columns: repeat(5, 240px);
+  grid-gap: 10px;
+  justify-content: center;
   min-height: 100vh;
-  padding-top: 20px;
-  text-align: center;
-
-  .searchBar {
-    display: flex;
-    justify-content: center;
-
-    form {
-      display: flex;
-      justify-content: center;
-      background-color: design.$Highlight;
-      height: 40px;
-      width: 560px;
-      border-radius: 20px;
-      transition: $transition;
-
-      .searchTerm {
-        padding: 0;
-        margin-left: 10px;
-        font-size: 16px;
-        font-family: design.$font_title;
-        color: design.$Main;
-        background-color: transparent;
-        width: 500px;
-        border: 0;
-        outline: none;
-        
-        select, textarea {
-          color: design.$Main;
-        }
-      }
-      .searchTerm::placeholder{
-        color: rgba(design.$Main, 50%);
-      }
-
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: transparent;
-        border-radius: 20px;
-        width: 40px;
-        height: 40px;
-        transition: $transition;
-        border: 0;
-
-        svg {
-            width: 20px;
-            fill: design.$Button_text;
-            transition: $transition;
-        }
-      }
-    }
-  }
-
-  .searchResults {
-    padding-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(5, 240px);
-    grid-gap: 10px;
-    justify-content: center;
-  }
+  width: 100%;
 }
 
-
-.search:hover {
-  form:hover {
-    background-color: design.$Tertiary;
-
-    button:hover {
-      svg {
-        width: 24px;
-      }
-    }
-  }
+h2 {
+  margin: 0;
+  min-height: 100vh;
+  text-align: center;
 }
