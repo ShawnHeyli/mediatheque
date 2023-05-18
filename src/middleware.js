@@ -11,7 +11,7 @@ export function middleware(request) {
   response.headers.set('X-XSS-Protection', '1; mode=block') ; // Enable XSS filtering
   response.headers.set('X-Content-Type-Options', 'nosniff'); // Prevent MIME type sniffing
   response.headers.set('Referrer-Policy', 'no-referrer'); // Hide the Referer header when leaving your site
-  response.headers.set('Content-Security-Policy', "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'unsafe-eval' 'self'"); // Limit resources to only come from your site
+  //response.headers.set('Content-Security-Policy', "default-src *; style-src 'self' 'unsafe-inline'; script-src 'unsafe-eval' 'self'; image-src *"); // Limit resources to only come from your site
   
   // Check if the request is a POST request
   if (request.method === 'POST') {
