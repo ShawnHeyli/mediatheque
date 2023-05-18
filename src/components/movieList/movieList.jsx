@@ -11,6 +11,7 @@ export default function MovieList({request, title}) {
     const [index, setIndex] = useState(0);
     const [cardSize, setSize] = useState(0);
 
+
     useEffect(() => {
       //recup les films
       fetch("https://api.themoviedb.org/3/movie/" + request + "?api_key=" + API_KEY)
@@ -18,7 +19,9 @@ export default function MovieList({request, title}) {
       .then(data=>{
         setMovies(data.results);
       });
+    }, [])
 
+    useEffect(() => {
       //change la taille de la liste dynamiquement
       window.addEventListener('resize', updateSize);
       updateSize();
