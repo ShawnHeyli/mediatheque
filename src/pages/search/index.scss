@@ -10,12 +10,18 @@ body {
 .search {
   padding-top: 20px;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .searchResults {
-    display: grid;
-    grid-template-columns: repeat(4, 240px);
+    background-color: design.$Stroke;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
     grid-gap: 10px;
-    justify-content: center;
+    justify-content: left;
     width: 100%;
   }
   
