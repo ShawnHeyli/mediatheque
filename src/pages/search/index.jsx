@@ -1,34 +1,52 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import Layout from '@/components/layouts/layout'
+import supabase from "@/lib/supabase";
 import Card from '@/components/card/card.jsx'
 import "./index.scss";
 
-const API_KEY ="437c55c81dfb6a83ad6d2652bc7b2e28";
+export async function getServerSideProps({ query }) {
+  const { sortBy = "title", order = "desc", page = 1, pageSize = 20 } = query;
+  const offset = (page - 1) * pageSize;
 
-export default function Home() {
-    const [movies, setMovies]=useState([]);
-    const noMovies = "No movies found :("
+  let { data: movies, error } = await supabase
+    .from("movies")
+    .select(
+      `   
+        *,
+        genres ( name ),
+        keywords ( name ),
+        production_companies ( name ),
+        production_countries ( name ),
+        spoken_languages ( name )
+    `
+    )
+    .textSearch('overview', query.s)
+    .order(sortBy, { ascending: order === "desc" ? false : true })
+    .range(offset, offset + pageSize - 1);
 
-    useEffect(() => {
-        const { search } = window.location;
-        const query = new URLSearchParams(search).get('s');
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=` + API_KEY + `&query=${query}`)
-        .then((res)=>res.json())
-        .then(data=>{
-        setMovies(data.results);
-      })
-    }, [])
+  if (error) {
+    console.log(error);
+    return { props: { movies: [], error: error.message } };
+  } else {
+    return { props: { movies: movies } };
+  }
+}
 
+export default function Home({ movies}) {
     return (
         <Layout>
-            {movies?.length > 0 ?(
-            <div className="searchResults">
-                {movies?.map((movie)=>
-                    <div className="cardElement" key={movie.id} name={movie.title} id={movie.id}><Card id={movie.id}/></div>)}
+            <div className="search">
+                {movies?.length > 0 ?(
+                <div className="searchResults">
+                    {movies?.map((movie)=>
+                        <div className="cardElement" key={movie.id} name={movie.title}>
+                            <Card movie={movie}/>
+                        </div>)}
+                </div>
+                ):(
+                    <h2>No movies found</h2>
+                )}
             </div>
-            ):(
-                <h2>{noMovies}</h2>
-            )}
         </Layout>
     )
 }
