@@ -1,0 +1,38 @@
+@use '../design';
+
+$transition: 0.3s;
+
+.pagination {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    a {
+        font-family: design.$font_title;
+        color: design.$Headline;
+        font-size: 16px;
+        padding: 7px;
+        border-radius: 5px;
+        transition: $transition;
+        background: design.$Secondary;
+    }
+
+    span {
+        font-family: design.$font_title;
+        color: design.$Headline;
+        font-size: 16px;
+        padding: 7px;
+    }
+    
+    .actif {
+        border-radius: 5px;
+        background: design.$Highlight;
+    }
+}
+
+.pagination:hover {
+    a:hover {
+        background: design.$Tertiary;
+    }
+}
