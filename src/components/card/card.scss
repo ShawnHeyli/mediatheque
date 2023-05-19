@@ -14,13 +14,21 @@ $transition: 0.5s;
     color: design.$Headline;
     font-family: design.$font_title;
 
+    a {
+        padding: 0;
+        text-align: left;
+        align-items: center;
+    }
+
     .poster {
         position: relative;
+
         img{
             width: 100%;
             transition: $transition;
         }
     }
+
     .poster::before {
         content: '';
         position: absolute;
@@ -45,7 +53,7 @@ $transition: 0.5s;
 
         .rating {
             padding: 2px;
-            font-size: 16px;
+            font-size: 18px;
 
             svg {
                 width: 18px;
@@ -55,7 +63,7 @@ $transition: 0.5s;
 
         .infos {
             margin-top: 3px;
-            font-size: 14px;
+            font-size: 15px;
             
             .reviewCount::after {
                 content: ' | ';
