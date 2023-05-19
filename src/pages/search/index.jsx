@@ -6,7 +6,7 @@ import Pagination from '@/components/pagination/pagination';
 import "./index.scss";
 
 export async function getServerSideProps({ query }) {
-  const { sortBy = "popularity", order = "asc", page = 1, pageSize = 20, s = "" } = query;
+  const { page = 1, pageSize = 20, s = "" } = query;
   const offset = (page - 1) * pageSize;
 
   let { data: movies, error } = await supabase
