@@ -53,7 +53,7 @@ export default function Home({ movie }) {
     <Layout>
       <div className="presentation">
         <div className="primary">
-          <img src="https://static.posters.cz/image/1300/affiches-et-posters/the-batman-2022-i122127.jpg"/>
+          <img src={"/images/posters/" + movie.id + ".jpg"}/>
 
           <div className="mainDescription">
             <h1>{movie.title}</h1>

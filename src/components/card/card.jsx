@@ -8,7 +8,7 @@ export default function Card({ movie }) {
     <article className="card">
         <a href={link}>
             <div className="poster">
-                    <img src="https://static.posters.cz/image/1300/affiches-et-posters/the-batman-2022-i122127.jpg"/>
+                <img src={"/images/posters/" + movie.id + ".jpg"}/>
             </div>
         </a>
         <div className="description">
