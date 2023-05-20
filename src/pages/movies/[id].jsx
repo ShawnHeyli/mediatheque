@@ -1,51 +1,78 @@
-import React from 'react';
-import Layout from '@/components/layouts/layout'
+import React from "react";
+import Layout from "@/components/layouts/layout";
 import supabase from "@/lib/supabase";
-import "./[id].scss"
+import "./[id].scss";
+import Image from "next/image";
 
 export async function getServerSideProps({ query }) {
-  const { id = 155} = query;
+  const { id } = query;
 
   let { data: movie, error } = await supabase
     .from("movies")
-    .select(`
+    .select(
+      `
         *,
         genres ( name ),
         keywords ( name ),
         production_companies ( name ),
         production_countries ( name ),
         spoken_languages ( name )
-    `)
+    `
+    )
     .eq("id", id)
     .single();
 
   if (error) {
     console.log(error);
-    return { props: { movie: [], error: error.message } };
-  } else {
-    return { props: { movie: movie } };
+
+    return { props: { movie: {}, poster: {}, error: error.message } };
   }
+
+  const { data: poster = null } = supabase.storage
+    .from("posters")
+    .getPublicUrl(`${movie.id}.jpg`);
+
+  return { props: { movie: movie, poster: poster } };
 }
 
-export default function Home({ movie }) {
+// eslint-disable-next-line no-unused-vars
+export default function Home({ movie, poster, error }) {
   function datePropre(date) {
-    return date.substring(8,10) + ' ' + monthWriten(date.substring(5,7)) +' ' + date.substring(0,4)
+    return (
+      date.substring(8, 10) +
+      " " +
+      monthWriten(date.substring(5, 7)) +
+      " " +
+      date.substring(0, 4)
+    );
   }
 
   function monthWriten(month) {
     switch (month) {
-      case '01': return 'Janvier'
-      case '02': return 'Février'
-      case '03': return 'Mars'
-      case '04': return 'Avril'
-      case '05': return 'Mai'
-      case '06': return 'Juin'
-      case '07': return 'Juillet'
-      case '08': return 'Août'
-      case '09': return 'Septembre'
-      case '10': return 'Octobre'
-      case '11': return 'Novombre'
-      default: return 'Décembre'
+      case "01":
+        return "Janvier";
+      case "02":
+        return "Février";
+      case "03":
+        return "Mars";
+      case "04":
+        return "Avril";
+      case "05":
+        return "Mai";
+      case "06":
+        return "Juin";
+      case "07":
+        return "Juillet";
+      case "08":
+        return "Août";
+      case "09":
+        return "Septembre";
+      case "10":
+        return "Octobre";
+      case "11":
+        return "Novombre";
+      default:
+        return "Décembre";
     }
   }
 
@@ -53,8 +80,21 @@ export default function Home({ movie }) {
     <Layout>
       <div className="presentation">
         <div className="primary">
-          <img src={"/images/posters/" + movie.id + ".jpg"} />
-
+          {poster ? (
+            <Image
+              src={poster.publicUrl}
+              alt={movie.title}
+              width={500}
+              height={750}
+            />
+          ) : (
+            <Image
+              src={"/images/placeholders/default_user_avatar.png"}
+              alt={movie.title}
+              width={500}
+              height={750}
+            />
+          )}
           <div className="mainDescription">
             <h1>{movie.title}</h1>
             <h2>{movie.release_date.substring(0, 4)}</h2>
