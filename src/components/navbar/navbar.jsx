@@ -15,8 +15,8 @@ export default function NavBar (){
       <div className="logo"><a href="/">CINERATER</a></div>
       <SearchBar/>
       <div className="user">
-        <a className="active" href="#inscription">Inscription</a>
-        <a href="/login">Se connecter</a>
+        <a className="active" href="/signup">Sign Up</a>
+        <a href="/login">Login</a>
       </div>
       
     </header>

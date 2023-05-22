@@ -132,12 +132,12 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2, bgcolor: "#7f5af0" }}
             >
-              {"s'inscrire"}
+              {"Sign Up"}
             </Button>
             <Grid container>
               <Grid item>
                 <Link className="link" href="/login">
-                  {"Vous avez deja un compte ?"}
+                  {"Have you already an account ?"}
                 </Link>
               </Grid>
             </Grid>

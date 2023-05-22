@@ -93,14 +93,14 @@ export default function SignInSide() {
             variant="contained"
             sx={{ mt: 3, mb: 2, bgcolor: "#7f5af0" }}
           >
-            se connecter
+            login
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link className="link" href="#">Mot de passe oublié ?</Link>
+              <Link className="link" href="#">Forgot your password ?</Link>
             </Grid>
             <Grid item>
-              <Link className="link" href="#inscription">{"Vous n'avez pas de compte ? Inscrivez vous"}</Link>
+              <Link className="link" href="/signup">{"You don’t have an account? Sign up"}</Link>
             </Grid>
           </Grid>
         </div>
