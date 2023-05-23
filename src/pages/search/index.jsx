@@ -40,6 +40,8 @@ export async function getServerSideProps({ query }) {
 
 export default function Home({ movies, genres, page, pageSize, movieCount, s, withgenres, withoutgenres, sortBy, order }) {
   const [cardSize, setSize] = useState(1);
+  console.log(sortBy);
+  console.log(order);
 
   useEffect(() => {
     //change la taille de la liste dynamiquement
