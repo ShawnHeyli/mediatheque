@@ -3,7 +3,7 @@ import './pagination.scss'
 
 export default function Pagination({ count, index, origin }) {
     var pageLinks = [];
-    const pagelink = origin + '&page=';
+    const pagelink = origin() + '&page=';
 
     if(index > 1) {
         pageLinks.push(<a href={pagelink+ (index-1)}>prev</a>)
@@ -18,9 +18,9 @@ export default function Pagination({ count, index, origin }) {
 
     for(var i = index-2; i <= index+2; i++){
         if(i == index){
-            pageLinks.push(<span className="actif">{i}</span>)
+            pageLinks.push(<span key={i} className="actif">{i}</span>)
         }else if (i > 0 && i <= count){
-            pageLinks.push(<a href={pagelink + i}>{i}</a>)
+            pageLinks.push(<a key={i} href={pagelink + i}>{i}</a>)
         }
     }
 

@@ -1,33 +1,79 @@
 @use '@/components/design';
 
-$transition: 0.5s;
+$transition: 0.3s;
 
 body {
   padding: 0;
   margin: 0;
 }
 
-.search {
+.searchPage {
   padding-top: 20px;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: top;
+  font-family: design.$font_title;
 
-  .searchResults {
-    padding: 10px;
-    border-radius: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    grid-gap: 10px;
-    justify-content: left;
-    width: 100%;
+  .searchOptions {
+    .genresSelector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      
+
+      .genre {
+        width: 120px;
+        border-radius: 5px;
+        background-color: design.$Secondary;
+        color: design.$Headline;
+        border: 0;
+        transition: $transition;
+        font-family: design.$font_title;
+        font-size: 16px;
+
+      }
+
+      .actif {
+        background-color: design.$Highlight;
+      }
+    }
   }
-  
-  h2 {
-    margin: 0;
-    font-family: design.$font_title;
-    text-align: center;
+
+  .searchPages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    h2 {
+      margin: 0;
+      font-family: design.$font_title;
+      text-align: center;
+    }
+    
+    .searchResults {
+      padding: 10px;
+      border-radius: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      grid-gap: 10px;
+      justify-content: left;
+      width: 100%;
+    }
+  }
+
+
+}
+
+.searchPage:hover {
+  .searchOptions:hover {
+    .genresSelector:hover {
+      .genre:hover {
+        background-color: design.$Tertiary;
+      }
+    }
   }
 }
