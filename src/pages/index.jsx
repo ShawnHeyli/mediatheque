@@ -4,6 +4,7 @@ import Layout from '@/components/layouts/layout'
 import MovieList from '@/components/movieList/movieList.jsx'
 import '@/app/globals.css';
 import "./index.scss";
+import Link from 'next/link';
 
 export async function getServerSideProps({ query }) {
   const { sortBy = "popularity", order = "asc", page = 1, pageSize = 20 } = query;
@@ -64,14 +65,14 @@ export default function Home({ movies }) {
             <MovieList movies={movies} title="Popular Movies"/>
             <ul>
               <li>
-                <a className='box-user' href="/signup">
+                <Link className='box-user' href="/signup">
                   <span>Join us</span>
-              </a>
+              </Link>
             </li>
               <li>
-              <a className='box-user' href="/login">
+              <Link className='box-user' href="/login">
                   <span>User space</span>
-              </a>
+              </Link>
               </li>
             </ul>
             
