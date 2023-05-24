@@ -3,10 +3,10 @@ import NavBar from '@/components/navbar/navbar';
 import Footer from '@/components/footer/footer';
 import "./layout.scss";
 
-export default function Layout({children}) {
+export default function Layout({children, searchBar}) {
   return (
     <>
-      <NavBar/>
+      <NavBar searchBar={searchBar}/>
       <main className="container">
         {children}
       </main>

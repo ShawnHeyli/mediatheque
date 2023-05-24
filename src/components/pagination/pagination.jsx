@@ -6,13 +6,13 @@ export default function Pagination({ count, index, origin }) {
     const pagelink = origin() + '&page=';
 
     if(index > 1) {
-        pageLinks.push(<a href={pagelink+ (index-1)}>prev</a>)
+        pageLinks.push(<a key={-1} href={pagelink+ (index-1)}>prev</a>)
     }
 
     if(index > 3){
-        pageLinks.push(<a href={pagelink + 1}>1</a>)
+        pageLinks.push(<a key={1} href={pagelink + 1}>1</a>)
         if(index > 4){
-            pageLinks.push(<span>...</span>)
+            pageLinks.push(<span key={-11}>...</span>)
         }
     }
 
@@ -26,18 +26,23 @@ export default function Pagination({ count, index, origin }) {
 
     if(index < count - 2){
         if(index < count - 3){
-            pageLinks.push(<span>...</span>)
+            pageLinks.push(<span key={-12}>...</span>)
         }
-        pageLinks.push(<a href={pagelink + count}>{count}</a>)
+        pageLinks.push(<a key={count} href={pagelink + count}>{count}</a>)
     }
 
-    if(index < count - 1) {
-        pageLinks.push(<a href={pagelink+ (index+1)}>next</a>)
+    if(index < count) {
+        pageLinks.push(<a key={-2} href={pagelink+ (index+1)}>next</a>)
     }
 
-    return (
-        <div className="pagination">
-            {pageLinks}
-        </div>
-    )
+    if(count == 1)
+        return(
+            <></>
+        )
+    else
+        return (
+            <div className="pagination">
+                {pageLinks}
+            </div>
+        )
 }

@@ -1,0 +1,56 @@
+@use '../design';
+
+$transition: 0.3s;
+
+.slider{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    .sliderInput {
+        -webkit-appearance: none;
+        height: 7px;
+        width: 150px;
+        background: design.$Secondary;
+        border-radius: 5px;
+        background-image: linear-gradient(design.$Highlight, design.$Highlight);
+        background-repeat: no-repeat;
+    }
+    .sliderInput::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: design.$Highlight;
+        cursor: pointer;
+        transition: $transition;
+    }
+    .sliderInput::-moz-range-thumb {
+        border: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: design.$Highlight;
+        cursor: pointer;
+        transition: $transition;
+    }
+    .sliderInput::-webkit-slider-runnable-track {
+        -webkit-appearance: none;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        transition: $transition;
+    }
+    .sliderInput::-webkit-slider-thumb:hover {
+        background: design.$Tertiary;
+    }
+    .sliderInput::-moz-range-thumb:hover {
+        background: design.$Tertiary;
+    }
+    
+    .sliderValue{
+        font-family: design.$font_title;
+        font-size: 20px;
+    }
+}

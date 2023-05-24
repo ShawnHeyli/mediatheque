@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import '../card/card.scss'
 
 export default function Card({ movie }) {
@@ -8,7 +9,12 @@ export default function Card({ movie }) {
     <article className="card">
         <a href={link}>
             <div className="poster">
-                <img src={"/images/posters/" + movie.id + ".jpg"}/>
+                <Image
+                src={"/images/posters/" + movie.id + ".jpg"}
+                alt={movie.title}
+                width={240}
+                height={360}
+                />
             </div>
         </a>
         <div className="description">
@@ -30,8 +36,8 @@ export default function Card({ movie }) {
                 <span className="date">{movie.release_date}</span>
             </div>
             <div className="tags">
-                {movie.genres?.map((genre)=>
-                    <div className="tag" key={genre.id}>{genre.name}</div>)}
+                {movie.genres?.map((genre, index)=>
+                    <div key={index} className="tag">{genre.name}</div>)}
             </div>
             <div className="synopsis">
                 <div className="overview">
