@@ -1,21 +1,22 @@
 import React from "react";
 import './navBar.scss';
 import SearchBar from "@/components/searchBar/searchBar";
+import Link from "next/link";
 
 export default function NavBar({ searchBar }){
   const hasSearch = (searchBar != "hidden");
 
   return (
     <header className="navBar">
-      <div className="logo"><a href="/">CINERATER</a></div>
+      <div className="logo"><Link href="/">CINERATER</Link></div>
       {hasSearch?(
         <SearchBar/>
       ):(
       <></>
       )}
       <div className="user">
-        <a className="active" href="/signup">Sign Up</a>
-        <a href="/login">Login</a>
+        <Link className="active" href="/signup">Sign Up</Link>
+        <Link href="/login">Login</Link>
       </div>
       
     </header>
