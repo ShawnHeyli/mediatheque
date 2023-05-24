@@ -19,11 +19,11 @@ export async function getServerSideProps({ query }) {
     .select(
       `
         *,
-        genres ( name ),
-        keywords ( name ),
-        production_companies ( name ),
-        production_countries ( name ),
-        spoken_languages ( name )
+        genres ( * ),
+        keywords ( * ),
+        production_companies ( * ),
+        production_countries ( * ),
+        spoken_languages ( * )
       `
       )
     .order(sortBy, { ascending: order === "desc" ? false : true })

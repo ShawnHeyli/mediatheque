@@ -36,9 +36,9 @@ export default function Card({ movie }) {
                 <span className="minutes">{("0" + (movie.runtime%60)).slice(-2)}</span>
                 <span className="date">{movie.release_date}</span>
             </div>
-            <div className="tags">
+            <div className="genres">
                 {movie.genres?.map((genre, index)=>
-                    <div key={index} className="tag">{genre.name}</div>)}
+                    <a key={index} href={'/search?s=&withgenres=' + genre.id} className="genre">{genre.name}</a>)}
             </div>
             <div className="synopsis">
                 <div className="overview">
