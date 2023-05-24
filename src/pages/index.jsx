@@ -3,8 +3,9 @@ import supabase from "@/lib/supabase";
 import Layout from '@/components/layouts/layout'
 import MovieList from '@/components/movieList/movieList.jsx'
 import '@/app/globals.css';
-import "./index.scss";
 import Link from 'next/link';
+import "./index.scss";
+
 
 export async function getServerSideProps({ query }) {
   const { sortBy = "popularity", order = "asc", page = 1, pageSize = 20 } = query;
@@ -43,18 +44,18 @@ export default function Home({ movies }) {
           <div className='presentation'>
             <ul>
             <li>
-            <div classname="title">
+            <div class="title">
               <h1>rate your favorite movies</h1>
             </div>
             </li>
             <li>
-            <div classname="title">
+            <div class="title">
               <h1>look for films you don’t know</h1>
             </div>
               
             </li>
             <li>
-            <div classname="title">
+            <div class="title">
               <h1>add films to your collection</h1>
             </div>
               
