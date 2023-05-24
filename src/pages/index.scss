@@ -1,19 +1,27 @@
 .box-user {
-    display: block;
+    display: inline-block;
     background-color: #2cb67d;
     border-radius: 0.5em;
     border: 0.15em double #cccccc;
     color: #eeeeee;
     text-align: center;
     font-size: 200%;
-    width: 75%;
+    width: 30%;
     transition: all 0.5s;
     cursor: pointer;
     margin: 2%;
     margin-left: auto;
     margin-right: auto;
-
+  
   }
+
+
+  li {
+    display:inline;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
   .box-user span {
     cursor: pointer;
     display: inline-block;
@@ -37,4 +45,40 @@
   .box-user:hover span:after {
     opacity: 1;
     right: 0;
+  }
+
+.presentation{
+  position: relative;
+  padding-top: 12%;
+  padding-bottom: 12%;
+  background: no-repeat url("/images/accueil/background2.jpg");
+  background-size: 100% 100%;
+  }
+
+  .title h1 {
+    font-size:150%; 
+    font-weight:700;  
+    letter-spacing:1px; 
+    text-transform:uppercase;
+    padding-left: 5%;
+    margin:auto; 
+    white-space:nowrap; 
+    padding-bottom:13px;
+  }
+  .title h1:before {
+      background-color: #7f5af0;
+      content: '';
+      display: block;
+      height: 3px;
+      width: 75px;
+      margin-bottom: 5px;
+  }
+  .title h1:after {
+      background-color: #7f5af0;
+      content: '';
+      display: block;
+      position:absolute; 
+      right:0; 
+      bottom:0;
+      margin-bottom: 0.25em;
   }

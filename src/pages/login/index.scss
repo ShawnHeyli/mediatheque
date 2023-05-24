@@ -65,3 +65,14 @@ body {
   color: #fffffe;
 }
 
+.MuiOutlinedInput-notchedOutline{
+  border-color: #7f5af0 ;
+  transition: 0.3s;
+}
+
+.MuiOutlinedInput-notchedOutline:hover{
+  border-color: #7f5af0 !important;
+  transition: 0.3s;
+}
+
+//sx={{"& .MuiOutlinedInput-root.Mui-disabled":{"& > fieldset": {border: '1px solid #7f5af0'}}}}
