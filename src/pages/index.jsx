@@ -44,18 +44,18 @@ export default function Home({ movies }) {
           <div className='presentation'>
             <ul>
             <li>
-            <div class="title">
+            <div className="title">
               <h1>rate your favorite movies</h1>
             </div>
             </li>
             <li>
-            <div class="title">
+            <div className="title">
               <h1>look for films you don’t know</h1>
             </div>
               
             </li>
             <li>
-            <div class="title">
+            <div className="title">
               <h1>add films to your collection</h1>
             </div>
               
