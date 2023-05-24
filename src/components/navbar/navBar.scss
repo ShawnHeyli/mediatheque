@@ -9,10 +9,12 @@ $transition: 0.3s;
     align-items: center;
     width: 100%;
     position: fixed;
+    margin-bottom: 10%;
     overflow: hidden;
     background-color: design.$Stroke;
     border-bottom: 0.5em solid #7f5af0;
     transition: $transition;
+    color: #fffffe;
 
     .logo{
         flex: 1;

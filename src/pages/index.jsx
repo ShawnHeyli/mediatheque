@@ -10,6 +10,8 @@ export async function getServerSideProps({ query }) {
 
   const offset = (page - 1) * pageSize;
 
+  
+
   let { data: movies, error } = await supabase
     .from("movies")
     .select(
@@ -36,17 +38,47 @@ export async function getServerSideProps({ query }) {
 export default function Home({ movies }) {
     return (
         <Layout>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+          
+          <div className='presentation'>
+            <ul>
+            <li>
+            <div class="title">
+              <h1>rate your favorite movies</h1>
+            </div>
+            </li>
+            <li>
+            <div class="title">
+              <h1>look for films you don’t know</h1>
+            </div>
+              
+            </li>
+            <li>
+            <div class="title">
+              <h1>add films to your collection</h1>
+            </div>
+              
+            </li>
+            </ul>
+          </div>
+            
             <MovieList movies={movies} title="Popular Movies"/>
-            <a className='box-user' href="/signup">
+            <ul>
+              <li>
+                <a className='box-user' href="/signup">
                   <span>Join us</span>
-            </a>
-            <MovieList movies={movies} title="Popular Movies"/>
-            <a className='box-user' href="/login">
+              </a>
+            </li>
+              <li>
+              <a className='box-user' href="/login">
                   <span>User space</span>
-            </a>
+              </a>
+              </li>
+            </ul>
+            
+            
+            <MovieList movies={movies} title="Popular Movies"/>
+            <MovieList movies={movies} title="Popular Movies"/>
+            <MovieList movies={movies} title="Popular Movies"/>
         </Layout>
     )
 }
