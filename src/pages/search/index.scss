@@ -151,6 +151,14 @@ body {
 
 .searchPage:hover {
   .searchOptions:hover {
+    .searchForm:hover {
+      background-color: design.$Tertiary;
+      button:hover {
+        svg {
+          width: 24px;
+        }
+      }
+    }
     .genresSelector:hover {
       .genre:hover {
         background-color: design.$Tertiary;

@@ -4,13 +4,14 @@ import '../card/card.scss'
 
 export default function Card({ movie }) {
     const link = '/movies/' + movie.id;
+    const poster = `https://dhnmuopflbpxbpisgvmk.supabase.co/storage/v1/object/public/posters/${movie.id}.jpg`
 
     return (
     <article className="card">
         <a href={link}>
             <div className="poster">
                 <Image
-                src={"/images/posters/" + movie.id + ".jpg"}
+                src={poster}
                 alt={movie.title}
                 width={240}
                 height={360}

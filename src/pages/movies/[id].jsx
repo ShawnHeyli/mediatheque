@@ -28,9 +28,7 @@ export async function getServerSideProps({ query }) {
     return { props: { movie: {}, poster: {}, error: error.message } };
   }
 
-  const { data: poster = null } = supabase.storage
-    .from("posters")
-    .getPublicUrl(`${movie.id}.jpg`);
+  const poster = `https://dhnmuopflbpxbpisgvmk.supabase.co/storage/v1/object/public/posters/${movie.id}.jpg`
 
   return { props: { movie: movie, poster: poster } };
 }
@@ -82,7 +80,7 @@ export default function Home({ movie, poster, error }) {
         <div className="primary">
           {poster ? (
             <Image
-              src={poster.publicUrl}
+              src={poster}
               alt={movie.title}
               width={500}
               height={750}
