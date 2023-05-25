@@ -1,0 +1,98 @@
+@use '../design';
+
+$transition: 0.5s;
+$transitionShort: 0.3s;
+
+.review {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 10px 15px;
+    border: 1px solid design.$Paragraph;
+    border-radius: 10px;
+
+    .infoBox {
+        display: flex;
+        flex-direction: column;
+
+        .profilePicture {
+            margin: 0 10px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .note {
+            display: inline-block;
+            text-align: center;
+            margin: 10px 0;
+
+            svg {
+                vertical-align: middle;
+                width: 25px;
+                fill: design.$Highlight;
+            }
+
+            span {
+                vertical-align: middle;
+                font-size: 16px;
+            }
+        }
+
+        .rank {
+            color: design.$Paragraph;
+            display: inline-block;
+            text-align: center;
+        }
+    }
+
+    .reviewBox {
+        display: flex;
+        flex-direction: column;
+
+        .pseudo {
+            margin: 0;
+        }
+
+        .title {
+            margin: 10px 0;
+        }
+
+        .content {
+            overflow: hidden;
+            transition: $transition;
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .showMore {
+            margin: 10px auto;
+            color: design.$Paragraph;
+            border: 1px solid design.$Paragraph;
+            border-radius: 10px;
+            background: transparent;
+            opacity: 100%;
+            width: 200px;
+            transition: $transitionShort;
+            cursor: pointer;
+
+            &:hover {
+                color: design.$Main;
+                background: design.$Tertiary;
+            }
+        }
+
+        .infos {
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            color: design.$Paragraph;
+
+            .date {
+                display: inline-block;
+                text-align: center;
+            }
+        }
+    }
+}

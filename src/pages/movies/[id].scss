@@ -60,12 +60,18 @@ h3 {
   }
 
   .synopsis {
-    margin-top: 20px;
+    margin: 20px 0;
 
     h3 {
       margin-left: 50px;
     }
 
+  }
+
+  .reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
 
