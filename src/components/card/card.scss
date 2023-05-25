@@ -1,98 +1,94 @@
 @use '../design';
 
-$transition: 0.5s;
-$transitionShort: 0.3s;
-
 .card {
-    text-align: left;
     position: relative;
     width: 240px;
     height: 350px;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0px 15px 35px rgba(0,0,0, 0.25);
-    transition: box-shadow $transition;
-    color: design.$Headline;
+    transition: box-shadow design.$transition;
     font-family: design.$font_title;
-
-    a {
+    &:hover {
+        box-shadow: 0px 15px 50px rgba(0,0,0, 0.5);
+        .poster {
+            &::before {
+                bottom: 0px;
+            }
+            img{
+                transform: translateY(-25px);
+                filter: blur(3px);
+            }
+        }
+        .description {
+            bottom: 0px;
+        }
+    }
+    .poster {
         padding: 0;
         text-align: left;
         align-items: center;
-    }
-
-    .poster {
         position: relative;
-
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            width: 100%;
+            height: 130%;
+            background: linear-gradient(0deg, #000 28%, transparent);
+            transition: design.$transition;
+            z-index: 1;
+        }
         img{
             width: 100%;
-            transition: $transition;
+            transition: design.$transition;
         }
     }
-
-    .poster::before {
-        content: '';
-        position: absolute;
-        bottom: -100px;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(0deg, #000 50%, transparent);
-        transition: $transition;
-        z-index: 1;
-    }
-
     .description {
         position: absolute;
         bottom: -115px;
         padding: 16px;
         z-index: 2;
-        transition: $transition;
-
+        transition: design.$transition;
         .title {
+            padding: 0;
+            text-align: left;
+            align-items: center;
+            font-weight: bold;
             font-size: 20px;
         }
-
         .rating {
             padding: 2px;
             font-size: 18px;
-
             svg {
-                width: 18px;
+                width: 25px;
                 fill: design.$Highlight;
             }
         }
-
         .infos {
             margin-top: 3px;
             font-size: 15px;
-            
-            .reviewCount::after {
-                content: ' | ';
-            }
-            .hours::after {
-                content: 'h';
-            }
-            .minutes::after {
-                content: 'mins | ';
-            }
         }
-
         .genres {
             position: relative;
             margin-top: 3px;
             margin-left: -2px;
-            
             .genre {
+                padding: 0;
+                text-align: left;
+                align-items: center;
                 margin: 2px;
                 display: inline-block;
                 white-space: nowrap;
                 padding: 2px 5px;
                 background: design.$Highlight;
                 border-radius: 5px;
-                transition: $transitionShort;
+                transition: design.$transitionShort;
+                &:hover {
+                    background: design.$Tertiary;
+                }
             }
         }
-
         .synopsis {
             margin-top: 10px;
             height: 100px;
@@ -105,30 +101,6 @@ $transitionShort: 0.3s;
                 overflow: hidden;
                 color: design.$Paragraph;
                 font-size: 14px;
-            }
-        }
-    }
-}
-
-.card:hover {
-    box-shadow: 0px 15px 50px rgba(0,0,0, 0.5);
-
-    .poster {
-        img{
-            transform: translateY(-25px);
-            filter: blur(3px);
-        }
-    }
-    .poster::before {
-        bottom: 0px;
-    }
-    
-    .description {
-        bottom: 0px;
-
-        .genres:hover {
-            .genre:hover {
-                background: design.$Tertiary;
             }
         }
     }
