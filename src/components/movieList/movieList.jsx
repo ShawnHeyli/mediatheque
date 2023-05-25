@@ -2,14 +2,21 @@ import React,{useState,useEffect} from 'react'
 import Card from '@/components/card/card.jsx'
 import './movieList.scss'
 import { useRouter } from 'next/router';
-export default function MovieList({ movies, title}) {
+export default function MovieList({ movies, title, type }) {
     const [index, setIndex] = useState(0);
     const [cardSize, setSize] = useState(0);
 
     const router = useRouter();
 
     const handleClick = () => {
-      router.push('/search?s=&sortBy=popularity');
+      if(type == "popularity"){
+        router.push('/search?s=&sortBy=popularity');
+      }else if(type == "vote_average"){
+        router.push('/search?s=&sortBy=vote_average&order=desc')
+      }else if(type == "release_date"){
+        router.push("/search?s=&sortBy=release_date&order=desc")
+      }
+      
     };
 
     useEffect(() => {

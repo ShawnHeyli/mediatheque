@@ -12,9 +12,11 @@ export async function getServerSideProps({ query }) {
 
   const offset = (page - 1) * pageSize;
 
-  
+//TODO ne pas faire autant d'appel à la base de données que de liste de films sur la page d'accueil
+// En cours, ne fonctionne pas:
 
-  let { data: movies, error } = await supabase
+/*
+  const  movies = supabase
     .from("movies")
     .select(
       `   
@@ -26,18 +28,61 @@ export async function getServerSideProps({ query }) {
         spoken_languages ( * )
     `
     )
-    .order(sortBy, { ascending: order === "desc" ? false : true })
-    .range(offset, offset + pageSize - 1);
+    ;
+
+    const moviesReleaseDateData = movies.order("release_date", { ascending: order === "asc" ? false : true }).range(offset, offset + pageSize - 1);
+    const moviesPopularityData = movies.order("popularity", { ascending: order === "desc" ? false : true }).range(offset, offset + pageSize - 1);
+    const moviesVote_averageData = movies.order("vote_average", { ascending: order === "asc" ? false : true }).range(offset, offset + pageSize - 1);
+    
+    let { data: moviesVote_average, error } = await moviesVote_averageData;
+    let {data: moviesPopularity}  = await moviesPopularityData;
+    let { data: moviesReleaseDate } = await moviesReleaseDateData;
+*/
+
+
+    function moviesList(sortBy, orderBy, original_language) {
+      const movies  = supabase
+      .from("movies")
+      .select(
+      `   
+        *,
+        genres ( * ),
+        keywords ( * ),
+        production_companies ( * ),
+        production_countries ( * ),
+        spoken_languages ( * )
+      `
+      ).order(sortBy, { ascending: order === orderBy ? false : true })
+      .range(offset, offset + pageSize - 1); 
+
+      if (original_language != "*"){
+        movies.eq('original_language', original_language);
+      }
+
+      return movies;
+    }
+
+    let {data: moviesPopularity, error}  = await moviesList(sortBy, "asc", "*");
+    let {data: moviesVote_average}  = await moviesList("vote_average", "asc", "*");
+    let {data: moviesReleaseDate}  = await moviesList("release_date", "asc", "*");
+    let {data: frenchMovies}  = await moviesList(sortBy, "asc", "fr");
+    
+
 
   if (error) {
     console.log(error);
     return { props: { movies: [], error: error.message } };
   } else {
-    return { props: { movies: movies } };
+    return { props: { 
+      moviesPopularity: moviesPopularity,
+      moviesVote_average: moviesVote_average,
+      moviesReleaseDate: moviesReleaseDate,
+      frenchMovies: frenchMovies
+    } };
   }
 }
 
-export default function Home({ movies }) {
+export default function Home({ moviesPopularity, moviesVote_average, moviesReleaseDate, frenchMovies }) {
     return (
         <Layout>
           
@@ -62,8 +107,7 @@ export default function Home({ movies }) {
             </li>
             </ul>
           </div>
-            
-            <MovieList movies={movies} title="Popular Movies"/>
+          <MovieList movies={moviesReleaseDate} title="movies of the moment" type="release_date"/>
             <ul>
               <li>
                 <Link className='box-user' href="/signup">
@@ -76,11 +120,12 @@ export default function Home({ movies }) {
               </Link>
               </li>
             </ul>
+
+            <MovieList movies={moviesPopularity} title="Popular Movies" type="popularity"/>
+
+            <MovieList movies={moviesVote_average} title="Best voted" type="vote_average"/>
             
-            
-            <MovieList movies={movies} title="Popular Movies"/>
-            <MovieList movies={movies} title="Popular Movies"/>
-            <MovieList movies={movies} title="Popular Movies"/>
+            <MovieList movies={frenchMovies} title="French Movies" type="popularity"/>
         </Layout>
     )
 }
