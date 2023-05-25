@@ -58,6 +58,7 @@ body {
         height: 40px;
         transition: $transition;
         border: 0;
+        cursor: pointer;
 
         svg {
             width: 20px;
@@ -98,6 +99,10 @@ body {
         background-color: design.$Highlight;
       }
 
+      .nonActif {
+        cursor: pointer;
+      }
+
       .order {
         margin-left: 10px;
         background-color: design.$Highlight;
@@ -119,6 +124,7 @@ body {
         transition: $transition;
         font-family: design.$font_title;
         font-size: 16px;
+        cursor: pointer;
       }
 
       .actif {
@@ -153,11 +159,6 @@ body {
   .searchOptions:hover {
     .searchForm:hover {
       background-color: design.$Tertiary;
-      button:hover {
-        svg {
-          width: 24px;
-        }
-      }
     }
     .genresSelector:hover {
       .genre:hover {

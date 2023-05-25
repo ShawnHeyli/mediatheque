@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import './searchBar.scss'
 
 export default function SearchBar() {
-    const [query, setQuery]=useState(0);
+    const [query, setQuery]=useState();
 
     useEffect(() => {
         setQuery(new URLSearchParams(window.location.search).get('s'));

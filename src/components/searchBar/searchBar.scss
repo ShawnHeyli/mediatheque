@@ -44,6 +44,7 @@ $transition: 0.5s;
             height: 40px;
             transition: $transition;
             border: 0;
+            cursor: pointer;
     
             svg {
                 width: 20px;
@@ -57,10 +58,4 @@ $transition: 0.5s;
 
 .search_form:hover {
     background-color: design.$Tertiary;
-
-    button:hover {
-        svg {
-            width: 24px;
-        }
-    }
 }

@@ -30,6 +30,7 @@ $transitionButton: 0.5s;
             height: 180px;
             transition: $transitionButton;
             text-align: center;
+            cursor: pointer;
 
             svg {
                 margin-top: 60px;
