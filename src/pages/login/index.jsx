@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import "./index.scss";
 
@@ -6,29 +8,25 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Layout from "@/components/layouts/layout";
 import { useRouter } from "next/router";
+import supabase from "@/lib/supabase-client";
 
 export default function SignInSide() {
   const router = useRouter();
   async function HandleSubmit(event) {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget);
+    const formData = new FormData(event.currentTarget);
 
-    // TODO change mockup
-    const res = await fetch("/api/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email: data.get("email"),
-        password: data.get("password"),
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const { error } = await supabase.auth.signInWithPassword({
+      email: formData.get("email"),
+      password: formData.get("password"),
     });
 
-    const json = await res.json();
-
-    res.ok ? router.push("/") : alert(json.error);
+    if (error) {
+      alert(error.message);
+    } else {
+      router.push("/");
+    }
   }
 
   // Later optimization
@@ -80,6 +78,7 @@ export default function SignInSide() {
                 },
               }}
             />
+            {/* Textfield with a purple border */}
             <TextField
               className="input"
               margin="normal"
