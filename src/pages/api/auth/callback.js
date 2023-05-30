@@ -8,7 +8,7 @@ const handler = async (req, res) => {
     await supabase.auth.exchangeCodeForSession(String(code));
   }
 
-  res.redirect("/");
+  res.redirect("/login");
 };
 
 export default handler;
