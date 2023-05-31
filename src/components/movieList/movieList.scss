@@ -25,9 +25,9 @@ $transitionButton: 0.5s;
 
         .button {
             background-color: design.$Button;
-            border-radius: 20px;
+            border-radius: 1.5em;
             width: 50px;
-            height: 180px;
+            height: 50%;
             transition: $transitionButton;
             text-align: center;
             cursor: pointer;
@@ -60,7 +60,7 @@ $transitionButton: 0.5s;
 .movieList:hover {
     .cardList:hover {
         .button:hover {
-            height: 200px;
+            height: 55%;
             background-color: design.$Tertiary;
     
             svg {

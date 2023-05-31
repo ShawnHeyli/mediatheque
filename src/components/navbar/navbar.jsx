@@ -25,12 +25,12 @@ export default function NavBar({ searchBar }){
       <></>
       )}
       <div className="user">
-        <Link href="/account">
+        <Link className="account" href="/account">
           <Image
-          src={"/images/placeholders/default_user_avatar.png"}
+          src={"/images/placeholders/default_user_avatar_highlight.png"}
           alt="profile picture"
-          height="30"
-          width="30"
+          height="20"
+          width="20"
           />
         </Link>
         <Link className="active" href="/signup">Sign Up</Link>

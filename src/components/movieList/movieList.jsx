@@ -15,6 +15,8 @@ export default function MovieList({ movies, title, type }) {
         router.push('/search?s=&sortBy=vote_average&order=desc')
       }else if(type == "release_date"){
         router.push("/search?s=&sortBy=release_date&order=desc")
+      }else if(type == "animation"){
+        router.push("/search?s=&sortBy=popularity&order=desc&withgenres=16")
       }
       
     };

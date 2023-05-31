@@ -38,6 +38,27 @@ export async function getServerSideProps({ query }) {
     let {data: moviesPopularity}  = await moviesPopularityData;
     let { data: moviesReleaseDate } = await moviesReleaseDateData;
 */
+    function moviesListGenre(genre){
+        const movies = supabase
+        .rpc(
+          'select_movies_with_genres',
+          { ids: [ genre ] },
+          { count: 'exact'}
+          )
+        .select(
+          `   
+            *,
+            genres ( * ),
+            keywords ( * ),
+            production_companies ( * ),
+            production_countries ( * ),
+            spoken_languages ( * )
+          `
+          ).order(sortBy, { ascending: order === order ? false : true })
+          .range(offset, offset + pageSize - 1); 
+
+        return movies
+    }
 
 
     function moviesList(sortBy, orderBy, original_language) {
@@ -65,7 +86,7 @@ export async function getServerSideProps({ query }) {
     let {data: moviesPopularity, error}  = await moviesList(sortBy, "asc", "*");
     let {data: moviesVote_average}  = await moviesList("vote_average", "asc", "*");
     let {data: moviesReleaseDate}  = await moviesList("release_date", "asc", "*");
-    let {data: frenchMovies}  = await moviesList(sortBy, "asc", "fr");
+    let {data: animationMovies}  = await moviesListGenre(16);
     
 
 
@@ -77,29 +98,29 @@ export async function getServerSideProps({ query }) {
       moviesPopularity: moviesPopularity,
       moviesVote_average: moviesVote_average,
       moviesReleaseDate: moviesReleaseDate,
-      frenchMovies: frenchMovies
+      animationMovies: animationMovies
     } };
   }
 }
 
-export default function Home({ moviesPopularity, moviesVote_average, moviesReleaseDate, frenchMovies }) {
+export default function Home({ moviesPopularity, moviesVote_average, moviesReleaseDate, animationMovies }) {
     return (
         <Layout>
           
           <div className='presentation'>
             <ul>
-            <li>
+            <li className='titles'>
             <div className="title">
               <h1>rate your favorite movies</h1>
             </div>
             </li>
-            <li>
+            <li className='titles'>
             <div className="title">
               <h1>look for films you don’t know</h1>
             </div>
               
             </li>
-            <li>
+            <li className='titles'>
             <div className="title">
               <h1>add films to your collection</h1>
             </div>
@@ -108,24 +129,41 @@ export default function Home({ moviesPopularity, moviesVote_average, moviesRelea
             </ul>
           </div>
           <MovieList movies={moviesReleaseDate} title="movies of the moment" type="release_date"/>
-            <ul>
-              <li>
-                <Link className='box-user' href="/signup">
-                  <span>Join us</span>
-              </Link>
-            </li>
-              <li>
-              <Link className='box-user' href="/login">
-                  <span>User space</span>
-              </Link>
-              </li>
-            </ul>
 
             <MovieList movies={moviesPopularity} title="Popular Movies" type="popularity"/>
 
+            <ul>
+              <li className='list-item'>
+              <div className="item">
+                  <Link className='user' href="/login">
+                      <div >
+                      <div>
+                              <img className="item-logo" src="/images/accueil/user_space_white.png" alt='user_space'/>
+                          </div>
+                          <p className="text-lien-item">User space</p> 
+                      </div>
+                  </Link>
+                </div>
+            </li>
+            <li className='list-item'>
+              <div className="item">
+                  <Link className='user' href="/signup">
+                      <div >
+                          <div>
+                              <img className="item-logo" src="/images/accueil/join_us_white.png" alt='join_us'/>
+                          </div>
+                          <p className="text-lien-item">Join us</p> 
+                      </div>
+                  </Link>
+                </div>
+              </li>
+            </ul>
+
             <MovieList movies={moviesVote_average} title="Best voted" type="vote_average"/>
+
             
-            <MovieList movies={frenchMovies} title="French Movies" type="popularity"/>
+            
+            <MovieList movies={animationMovies} title="Best animation Movies" type="animation"/>
         </Layout>
     )
 }
