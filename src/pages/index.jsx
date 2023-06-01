@@ -130,9 +130,9 @@ export default function Home({ moviesPopularity, moviesVote_average, moviesRelea
           </div>
           <MovieList movies={moviesReleaseDate} title="movies of the moment" type="release_date"/>
 
-            <MovieList movies={moviesPopularity} title="Popular Movies" type="popularity"/>
+          <MovieList movies={moviesPopularity} title="Popular Movies" type="popularity"/>
 
-            <ul>
+            <ul className='list-items'>
               <li className='list-item'>
               <div className="item">
                   <Link className='user' href="/login">

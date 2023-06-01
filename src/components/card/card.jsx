@@ -2,9 +2,20 @@ import React from 'react'
 import Image from 'next/image';
 import '../card/card.scss'
 
-export default function Card({ movie }) {
+export default function Card({ movie, type }) {
     const link = '/movies/' + movie.id;
     const poster = `https://dhnmuopflbpxbpisgvmk.supabase.co/storage/v1/object/public/posters/${movie.id}.jpg`
+
+    let linkFromAccueil = "";
+
+      if(type == "vote_average"){
+        linkFromAccueil = "&sortBy=vote_average";
+      }else if(type == "release_date"){
+        linkFromAccueil = "&sortBy=release_date";
+      }else if(type == "animation"){
+        linkFromAccueil = ",16";
+      }
+
 
     return (
     <article className="card">
@@ -31,7 +42,7 @@ export default function Card({ movie }) {
             </div>
             <div className="genres">
                 {movie.genres?.map((genre, index)=>
-                    <a key={index} href={'/search?s=&withgenres=' + genre.id} className="genre">{genre.name}</a>)}
+                    <a key={index} href={'/search?s=&withgenres=' + genre.id + linkFromAccueil} className="genre">{genre.name}</a>)}
             </div>
             <div className="synopsis">
                 <div className="overview">

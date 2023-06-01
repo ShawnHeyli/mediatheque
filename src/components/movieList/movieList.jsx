@@ -60,7 +60,7 @@ export default function MovieList({ movies, title, type }) {
         <div className="cardBox" style={{width: cardSize * 250 + 10}}>
           <div className="cardElements" style={{ transform: `translate(-${index * 250}px)`}}>
             {movies?.map((movie)=>
-              <div className="cardElement" key={movie.id} name={movie.title} id={movie.id}><Card movie={movie}/></div>)}
+              <div className="cardElement" key={movie.id} name={movie.title} id={movie.id}><Card movie={movie} type={type} /></div>)}
           </div>
         </div>
         <div className="button" onClick={() => {updateIndex(index + 1)}}>
