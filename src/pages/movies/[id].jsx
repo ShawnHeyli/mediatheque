@@ -143,7 +143,7 @@ export default function Home({ movie, poster, error }) {
         </div>
 
         <div className="reviews">
-          {movie.reviews?.map((index, review)=>
+          {movie.reviews?.map((review, index)=>
             <Review key={index} review={review}/>
           )}
           
