@@ -8,7 +8,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Layout from "@/components/layouts/layout";
 import { useRouter } from "next/router";
-import supabase from "@/lib/supabase-client";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 export default function SignInSide() {
   const router = useRouter();
@@ -16,6 +16,8 @@ export default function SignInSide() {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
+
+    const supabase = useSupabaseClient();
 
     const { error } = await supabase.auth.signInWithPassword({
       email: formData.get("email"),
