@@ -7,11 +7,8 @@ import { useUser } from "@supabase/auth-helpers-react";
 
 export default function NavBar({ searchBar }) {
   const hasSearch = searchBar != "hidden";
-
   const user = useUser();
-
-  console.log(user);
-
+  
   return (
     <header className="navBar">
       <div className="logo">
