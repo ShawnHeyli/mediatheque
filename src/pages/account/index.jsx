@@ -5,12 +5,16 @@ import "@/app/globals.css";
 import Image from "next/image";
 import "./account.scss";
 import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(ctx) {
   const supabaseServer = createPagesServerClient(ctx);
+
   const {
     data: { session },
   } = await supabaseServer.auth.getSession(ctx);
+  const user = session.user;
 
   if (!session) {
     return {
@@ -70,21 +74,49 @@ export async function getServerSideProps(ctx) {
     return { props: { movies, user: session.user } };
   }
   */
-  
-  // TEMP 
-  return { props: { user: session.user } };
+
+  const placeholderAvatarUrl = "/images/placeholders/default_user_avatar.png";
+  const { data, error } = await supabaseServer.storage
+    .from("avatar")
+    .createSignedUrl(`${user.id}/${user.id}`, 6000);
+
+  // TEMP
+  let avatarUrl = error ? placeholderAvatarUrl : data.signedUrl;
+
+  return {
+    props: { user, avatarUrl },
+  };
 }
 
 // eslint-disable-next-line no-unused-vars
-export default function Home({ movies, user }) {
+export default function Home({ movies, user, avatarUrl }) {
   const pseudo = user.user_metadata.pseudo;
+  const router = useRouter();
+
+  const supabaseClient = useSupabaseClient();
+
+  async function handleAvatarUpload(e) {
+    const file = e.target.files[0];
+    const { error } = await supabaseClient.storage
+      .from("avatar")
+      .upload(`${user.id}/${user.id}`, file, {
+        upsert: true,
+      });
+
+    if (error) {
+      alert(error.message);
+    } else {
+      // Soft refresh
+      router.replace(router.asPath);
+    }
+  }
 
   return (
     <Layout>
       <div className="account">
         <div className="accountInfos">
           <Image
-            src={"/images/placeholders/default_user_avatar.png"}
+            src={avatarUrl}
             alt="profile picture"
             height="100"
             width="100"
@@ -95,6 +127,8 @@ export default function Home({ movies, user }) {
         <div className="reviewBox"></div>
         <h2>Most Liked Review</h2>
         <div className="reviewBox"></div>
+        <h2>Avatar upload</h2>
+        <input type="file" onChange={handleAvatarUpload} />
       </div>
     </Layout>
   );

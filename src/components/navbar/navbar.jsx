@@ -1,14 +1,34 @@
-import React from "react";
-import './navBar.scss';
+import React, { useEffect, useState } from "react";
+import "./navBar.scss";
 import SearchBar from "@/components/searchBar/searchBar";
 import Link from "next/link";
 import Image from "next/image";
-import { useUser } from "@supabase/auth-helpers-react";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 
 export default function NavBar({ searchBar }) {
   const hasSearch = searchBar != "hidden";
+  const supabaseClient = useSupabaseClient();
   const user = useUser();
-  
+  const [avatarUrl, setAvatarUrl] = useState(
+    "/images/placeholders/default_user_avatar.png"
+  );
+
+  useEffect(() => {
+    async function getAvatarUrl() {
+      if (user) {
+        const placeholderAvatarUrl =
+          "/images/placeholders/default_user_avatar.png";
+
+        const { data, error } = await supabaseClient.storage
+          .from("avatar")
+          .createSignedUrl(`${user.id}/${user.id}`, 6000);
+
+        setAvatarUrl(error ? placeholderAvatarUrl : data.signedUrl);
+      }
+    }
+    getAvatarUrl();
+  }, [user, supabaseClient]);
+
   return (
     <header className="navBar">
       <div className="logo">
@@ -26,7 +46,7 @@ export default function NavBar({ searchBar }) {
         {user ? (
           <Link className="account" href="/account">
             <Image
-              src={"/images/placeholders/default_user_avatar_highlight.png"}
+              src={avatarUrl}
               alt="profile picture"
               height="20"
               width="20"
@@ -44,4 +64,3 @@ export default function NavBar({ searchBar }) {
     </header>
   );
 }
-
