@@ -4,7 +4,7 @@ import supabase from "@/lib/supabase";
 import Card from '@/components/card/card.jsx'
 import Pagination from '@/components/pagination/pagination';
 import Slider from '@/components/slider/slider';
-import "./index.scss";
+import "./search.scss";
 
 export async function getServerSideProps({ query }) {
   const { s = "", withgenres = "-1", withoutgenres = "-1", pageSize = 20, page = 1, sortBy = "popularity", order = "desc" } = query;

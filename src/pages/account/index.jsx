@@ -5,7 +5,9 @@ import MovieList from '@/components/movieList/movieList.jsx'
 import '@/app/globals.css';
 import Image from 'next/image';
 import Review from '@/components/review/review';
-import "./index.scss";
+import "./account.scss";
+import '@/app/globals.css';
+
 
 
 export async function getServerSideProps({ query }) {
