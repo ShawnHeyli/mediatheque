@@ -20,7 +20,7 @@ export const getServerSideProps = async (ctx) => {
 
   // Run queries with RLS on the server
   const { data } = await supabase
-    .from("user")
+    .from("rls_testbench")
     .select("*")
     .eq("id", "1")
     .single();

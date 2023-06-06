@@ -47,7 +47,7 @@ export default function Example({ serverData, session }) {
   useEffect(() => {
     async function loadData() {
       const { data } = await supabaseClient
-        .from("user")
+        .from("rls_testbench")
         .select("*")
         .eq("id", "1")
         .single();
