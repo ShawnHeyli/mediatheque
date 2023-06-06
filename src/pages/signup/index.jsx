@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./index.scss";
+import "./signup.scss";
 
 import { Link, Grid, TextField, Button, Avatar } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";

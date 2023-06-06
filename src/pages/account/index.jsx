@@ -3,7 +3,7 @@ import React from 'react'
 import Layout from "@/components/layouts/layout";
 import "@/app/globals.css";
 import Image from "next/image";
-import "./index.scss";
+import "./account.scss";
 import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
 
 export async function getServerSideProps(ctx) {

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import "./index.scss";
+import "./login.scss";
 
 import { Link, Grid, TextField, Button, Avatar } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
