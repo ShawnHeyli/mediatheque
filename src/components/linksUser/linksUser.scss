@@ -1,0 +1,60 @@
+@use '../design';
+
+.item-logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+  }
+  
+  .item{
+    background-color: #010101;
+    border: solid #7f5af0;
+    border-radius: 0.5em;
+    transition: 0.3s;
+    display: inline-block;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
+  .item:hover, .item_for_user:hover{
+    border: solid #2cb67d;
+    box-shadow: 0px 0px 10px 10px #2cb67d;
+    transition: 0.3s;
+  }
+  
+  .item_for_user{
+    background-color: #010101;
+    border: solid #7f5af0;
+    border-radius: 0.5em;
+    transition: 0.3s;
+    display: inline-block;
+    margin-left: 33%;
+    margin-right: 33%;
+  }
+  
+  .user{
+    position: relative;
+  
+  }
+  
+  .text-lien-item{
+    font-size: 1.5vw;
+    color: #7f5af0;
+    text-align: center;
+    transition: 0.3s;
+  }
+  
+  .item:hover .text-lien-item, .item_for_user:hover .text-lien-item{
+    transition: 0.3s;
+    color: #2cb67d;
+  }
+
+  .list-item{
+    display: inline;
+  }
+  
+  .list-items{
+    background: no-repeat url("/images/accueil/background.jpg");
+    background-size: 100% 100%;
+  }

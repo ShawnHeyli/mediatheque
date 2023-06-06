@@ -3,7 +3,7 @@ import supabase from "@/lib/supabase";
 import Layout from '@/components/layouts/layout'
 import MovieList from '@/components/movieList/movieList.jsx'
 import '@/app/globals.css';
-import Link from 'next/link';
+import LinksUser from '@/components/linksUser/linksUser';
 import "./index.scss";
 
 
@@ -132,32 +132,7 @@ export default function Home({ moviesPopularity, moviesVote_average, moviesRelea
 
           <MovieList movies={moviesPopularity} title="Popular Movies" type="popularity"/>
 
-            <ul className='list-items'>
-              <li className='list-item'>
-              <div className="item">
-                  <Link className='user' href="/login">
-                      <div >
-                      <div>
-                              <img className="item-logo" src="/images/accueil/user_space_white.png" alt='user_space'/>
-                          </div>
-                          <p className="text-lien-item">User space</p> 
-                      </div>
-                  </Link>
-                </div>
-            </li>
-            <li className='list-item'>
-              <div className="item">
-                  <Link className='user' href="/signup">
-                      <div >
-                          <div>
-                              <img className="item-logo" src="/images/accueil/join_us_white.png" alt='join_us'/>
-                          </div>
-                          <p className="text-lien-item">Join us</p> 
-                      </div>
-                  </Link>
-                </div>
-              </li>
-            </ul>
+            <LinksUser/>
 
             <MovieList movies={moviesVote_average} title="Best voted" type="vote_average"/>
 
