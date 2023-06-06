@@ -4,6 +4,7 @@ import supabase from "@/lib/supabase";
 import "./[id].scss";
 import Image from "next/image";
 import Review from "@/components/review/review";
+import ReviewWriter from "@/components/reviewWriter/reviewWriter";
 
 export async function getServerSideProps({ query }) {
   const { id } = query;
@@ -19,10 +20,13 @@ export async function getServerSideProps({ query }) {
         production_countries ( name ),
         spoken_languages ( name ),
         reviews ( 
+          id,
           title,
           note, 
           content,
-          users( * )
+          date,
+          time,
+          users (*)
           )
     `
     )
@@ -36,6 +40,16 @@ export async function getServerSideProps({ query }) {
 
 // eslint-disable-next-line no-unused-vars
 export default function Home({ movie, poster, error }) {
+  var user = {id: 1, pseudonym: "jamie", rank: "member"};
+  var userReview = null;
+  
+  movie.reviews.map((review) => {
+      if(review.users.id == user.id){
+        userReview = review;
+        user = review.users;
+      }
+    })
+
   function datePropre(date) {
     return (
       date.substring(8, 10) +
@@ -141,6 +155,15 @@ export default function Home({ movie, poster, error }) {
           <h1>Synopsis : </h1>
           <h3>{movie.overview}</h3>
         </div>
+
+        <h1>Write a review : </h1>
+
+        <div className="reviewWriterBox">
+          <ReviewWriter user={user} review={userReview} movie_id={movie.id}/>
+        </div>
+
+        <h1>User reviews : </h1>
+
 
         <div className="reviews">
           {movie.reviews?.map((review, index)=>

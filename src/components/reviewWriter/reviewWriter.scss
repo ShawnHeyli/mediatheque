@@ -1,6 +1,6 @@
 @use '../design';
 
-.review {
+.reviewWriter {
     display: flex;
     flex-direction: row;
     gap: 30px;
@@ -36,8 +36,13 @@
         width: 100%;
 
         .title {
-            margin: 0;
+            margin: 0 20%;
             text-align: center;
+            background: transparent;
+            border: 1px solid design.$Paragraph;
+            border-radius: 10px;
+            font-size: 20px;
+            color: design.$Headline;
         }
 
         .note {
@@ -45,39 +50,48 @@
             text-align: center;
             margin: 10px 0;
 
-            .star {
-                vertical-align: middle;
-                width: 25px;
-                fill: design.$Secondary;
-            }
+            .starButton{
+                border: none;
+                background: transparent;
+                cursor: pointer;
 
-            .filled {
-                fill: design.$Highlight;
+
+                .star {
+                    vertical-align: middle;
+                    width: 25px;
+                    fill: design.$Secondary;
+                    transition: design.$transitionShort;
+
+                    &:hover {
+                        fill: design.$Tertiary;
+                    }
+                }
+    
+                .filled {
+                    fill: design.$Highlight;
+                }
             }
         }
 
         .content {
-            overflow: hidden;
-            transition: design.$transition;
-
-            p {
-                margin: 0;
-            }
-        }
-
-        .showMore {
-            margin: 10px auto;
-            color: design.$Paragraph;
+            background: transparent;
             border: 1px solid design.$Paragraph;
             border-radius: 10px;
+            font-size: 16px;
+            color: design.$Headline;
+        }
+
+        .submit {
+            margin: 1em 0;
             background: transparent;
-            opacity: 100%;
-            width: 200px;
-            transition: design.$transitionShort;
+            border: 1px solid design.$Paragraph;
+            border-radius: 10px;
+            font-size: 16px;
+            color: design.$Headline;
             cursor: pointer;
+            transition: design.$transitionShort;
 
             &:hover {
-                color: design.$Main;
                 background: design.$Tertiary;
             }
         }
