@@ -1,23 +1,49 @@
 import React from 'react'
 import supabase from "@/lib/supabase";
-import Layout from '@/components/layouts/layout'
-import MovieList from '@/components/movieList/movieList.jsx'
-import '@/app/globals.css';
-import Image from 'next/image';
-import Review from '@/components/review/review';
+import Layout from "@/components/layouts/layout";
+import "@/app/globals.css";
+import Image from "next/image";
 import "./index.scss";
+import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
 
+export async function getServerSideProps(ctx) {
+  const supabaseServer = createPagesServerClient(ctx);
+  const {
+    data: { session },
+  } = await supabaseServer.auth.getSession(ctx);
 
-export async function getServerSideProps({ query }) {
-  const { s = "", withgenres = "-1", withoutgenres = "-1", pageSize = 20, page = 1, sortBy = "popularity", order = "desc" } = query;
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  const {
+    s = "",
+    withgenres = "-1",
+    withoutgenres = "-1",
+    pageSize = 20,
+    page = 1,
+    sortBy = "popularity",
+    order = "desc",
+  } = ctx.query;
   const offset = (page - 1) * pageSize;
 
+  /*
   let { data: movies, error } = await supabase
     .rpc(
-      'search_movie',
-      { keyword: s , similarity: 1, withgenres: withgenres.split(','), withoutgenres: withoutgenres.split(',') },
-      { count: 'exact'}
-      )
+      "search_movie",
+      {
+        keyword: s,
+        similarity: 1,
+        withgenres: withgenres.split(","),
+        withoutgenres: withoutgenres.split(","),
+      },
+      { count: "exact" }
+    )
     .select(
       `
         *,
@@ -27,52 +53,43 @@ export async function getServerSideProps({ query }) {
         production_countries ( * ),
         spoken_languages ( * )
       `
-      )
+    )
     .order(sortBy, { ascending: order === "desc" ? false : true })
     .range(offset, offset + pageSize - 1);
+    */
 
   if (error) {
-    console.log(error);
-    return { props: { movies: [], error: error } };
+    return {
+      redirect: {
+        destination: "/500",
+        permanent: false,
+      },
+    };
   } else {
-    return { props: { movies: movies } };
+    return { props: { movies, user: session.user } };
   }
 }
 
-export default function Home({ movies }) {
-    return (
-        <Layout>
-        <div className="account">
-          <div className="accountInfos">
-            <Image
-              src={"/images/placeholders/default_user_avatar.png"}
-              alt="profile picture"
-              height="100"
-              width="100"
-              />
-              <h2>
-                Pseudo
-              </h2>
-          </div>
-            <h2>
-              Last Review
-            </h2>
-            <div className="reviewBox">
-              <Review 
-              content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Iaculis eu non diam phasellus vestibulum lorem sed. Risus at ultrices mi tempus imperdiet. Ut etiam sit amet nisl purus in. fin du lorem'
-              />
-            </div>
-            <h2>
-              Most Liked Review
-            </h2>
-            <div className="reviewBox">
-              <Review 
-              content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Iaculis eu non diam phasellus vestibulum lorem sed. Risus at ultrices mi tempus imperdiet. Ut etiam sit amet nisl purus in. fin du lorem'
-              />
-            </div>
-          </div>
-            <MovieList movies={movies} title="movies you liked" type="release_date"/>
-            <MovieList movies={movies} title="movies you rated rencently" type="release_date"/>
-        </Layout>
-    )
+export default function Home({ movies, user }) {
+  const pseudo = user.user_metadata.pseudo;
+
+  return (
+    <Layout>
+      <div className="account">
+        <div className="accountInfos">
+          <Image
+            src={"/images/placeholders/default_user_avatar.png"}
+            alt="profile picture"
+            height="100"
+            width="100"
+          />
+          <h2>{pseudo}</h2>
+        </div>
+        <h2>Last Review</h2>
+        <div className="reviewBox"></div>
+        <h2>Most Liked Review</h2>
+        <div className="reviewBox"></div>
+      </div>
+    </Layout>
+  );
 }
