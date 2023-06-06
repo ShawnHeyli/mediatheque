@@ -1,13 +1,21 @@
+
 import React from "react";
 import './navBar.scss';
 import SearchBar from "@/components/searchBar/searchBar";
 import Link from "next/link";
 import Image from "next/image";
 import { useUser } from "@supabase/auth-helpers-react";
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
 
 export default function NavBar({ searchBar }) {
   const hasSearch = searchBar != "hidden";
   const user = useUser();
+  
+  const handleSignOut = async () => {
+    const supabase = createClientComponentClient()
+    await supabase.auth.signOut()
+  }
   
   return (
     <header className="navBar">
@@ -24,6 +32,7 @@ export default function NavBar({ searchBar }) {
       {hasSearch ? <SearchBar /> : <></>}
       <div className="user">
         {user ? (
+          <div>
           <Link className="account" href="/account">
             <Image
               src={"/images/placeholders/default_user_avatar_highlight.png"}
@@ -32,6 +41,10 @@ export default function NavBar({ searchBar }) {
               width="20"
             />
           </Link>
+          <Link className="active" href="/login" onClick={handleSignOut}>
+              Sign out
+            </Link>
+          </div>
         ) : (
           <>
             <Link className="active" href="/signup">
