@@ -21,7 +21,12 @@ export default function NavBar({ searchBar }) {
 
         const { data, error } = await supabaseClient.storage
           .from("avatar")
-          .createSignedUrl(`${user.id}/${user.id}`, 6000);
+          .createSignedUrl(`${user.id}/${user.id}`, 6000, {
+            transform: {
+              width: 30,
+              height: 30,
+            },
+          });
 
         setAvatarUrl(error ? placeholderAvatarUrl : data.signedUrl);
       }

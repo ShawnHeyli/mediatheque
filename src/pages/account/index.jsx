@@ -78,7 +78,12 @@ export async function getServerSideProps(ctx) {
   const placeholderAvatarUrl = "/images/placeholders/default_user_avatar.png";
   const { data, error } = await supabaseServer.storage
     .from("avatar")
-    .createSignedUrl(`${user.id}/${user.id}`, 6000);
+    .createSignedUrl(`${user.id}/${user.id}`, 6000, {
+      transform: {
+        width: 300,
+        height: 300,
+      },
+    });
 
   // TEMP
   let avatarUrl = error ? placeholderAvatarUrl : data.signedUrl;
