@@ -1,5 +1,5 @@
 import React from 'react'
-import supabase from "@/lib/supabase";
+//import supabase from "@/lib/supabase";
 import Layout from "@/components/layouts/layout";
 import "@/app/globals.css";
 import Image from "next/image";
@@ -21,6 +21,7 @@ export async function getServerSideProps(ctx) {
     };
   }
 
+  /*
   const {
     s = "",
     withgenres = "-1",
@@ -32,7 +33,7 @@ export async function getServerSideProps(ctx) {
   } = ctx.query;
   const offset = (page - 1) * pageSize;
 
-  /*
+
   let { data: movies, error } = await supabase
     .rpc(
       "search_movie",
@@ -57,7 +58,7 @@ export async function getServerSideProps(ctx) {
     .order(sortBy, { ascending: order === "desc" ? false : true })
     .range(offset, offset + pageSize - 1);
     */
-
+  /*
   if (error) {
     return {
       redirect: {
@@ -68,8 +69,13 @@ export async function getServerSideProps(ctx) {
   } else {
     return { props: { movies, user: session.user } };
   }
+  */
+  
+  // TEMP 
+  return { props: { user: session.user } };
 }
 
+// eslint-disable-next-line no-unused-vars
 export default function Home({ movies, user }) {
   const pseudo = user.user_metadata.pseudo;
 
