@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
-import Image from 'next/image';
-import "./review.scss"
+import React, { useState } from "react";
+import "./review.scss";
 import Avatar from "../avatar/Avatar";
 
 export default function Review({ review }) {

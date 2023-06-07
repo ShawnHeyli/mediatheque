@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect } from "react";
 import "./reviewWriter.scss";
 import { useRouter } from "next/router";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";

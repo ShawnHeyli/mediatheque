@@ -1,42 +1,14 @@
-
-import React, { useEffect, useState } from "react";
 import "./navBar.scss";
 import SearchBar from "@/components/searchBar/searchBar";
 import Link from "next/link";
 import Image from "next/image";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useUser } from "@supabase/auth-helpers-react";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Avatar from "../avatar/Avatar";
 
 export default function NavBar({ searchBar }) {
   const hasSearch = searchBar != "hidden";
-  const supabaseClient = useSupabaseClient();
   const user = useUser();
-
-  const [avatarUrl, setAvatarUrl] = useState(
-    "/images/placeholders/default_user_avatar.png"
-  );
-
-  useEffect(() => {
-    async function getAvatarUrl() {
-      if (user) {
-        const placeholderAvatarUrl =
-          "/images/placeholders/default_user_avatar.png";
-
-        const { data, error } = await supabaseClient.storage
-          .from("avatar")
-          .createSignedUrl(`${user.id}/${user.id}`, 6000, {
-            transform: {
-              width: 30,
-              height: 30,
-            },
-          });
-
-        setAvatarUrl(error ? placeholderAvatarUrl : data.signedUrl);
-      }
-    }
-    getAvatarUrl();
-  }, [user, supabaseClient]);
 
   const handleSignOut = async () => {
     const supabase = createClientComponentClient();
