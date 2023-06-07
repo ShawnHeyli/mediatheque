@@ -5,8 +5,7 @@ import "./[id].scss";
 import Image from "next/image";
 import Review from "@/components/review/review";
 import ReviewWriter from "@/components/reviewWriter/reviewWriter";
-import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
-import Link from "next/link";
+import { useUser } from "@supabase/auth-helpers-react";
 
 export async function getServerSideProps(ctx) {
   const { id } = ctx.query;
@@ -30,38 +29,22 @@ export async function getServerSideProps(ctx) {
           content,
           date,
           time,
-          users (*)
+          users ( * )
           )
     `
     )
     .eq("id", id)
     .single();
 
-  const supabaseServer = createPagesServerClient(ctx);
-  
-  const {
-    data: { session },
-  } = await supabaseServer.auth.getSession(ctx);
-  
-  if(session){
-    user = session.user;
-  
-    let { data: review } = await supabase
-      .from("reviews")
-      .select(`*`)
-      .eq("user_id", user.id)
-      .eq("movie_id", movie.id)
-      .single();
-    userReview = review;
-  }
+  const poster = `https://dhnmuopflbpxbpisgvmk.supabase.co/storage/v1/object/public/posters/${movie.id}.jpg`;
 
-  const poster = `https://dhnmuopflbpxbpisgvmk.supabase.co/storage/v1/object/public/posters/${movie.id}.jpg`
-
-  return { props: { movie: movie, user: user, userReview: userReview, poster: poster, error: error } };
+  return { props: { movie: movie, poster: poster, error: error } };
 }
 
-export default function Home({ movie, user, userReview, poster }) {
-  console.log(userReview)
+// eslint-disable-next-line no-unused-vars
+export default function Home({ movie, poster, error }) {
+  var userReview = null;
+  const user = useUser();
 
   function datePropre(date) {
     return (
@@ -107,12 +90,7 @@ export default function Home({ movie, user, userReview, poster }) {
       <div className="presentation">
         <div className="primary">
           {poster ? (
-            <Image
-              src={poster}
-              alt={movie.title}
-              width={500}
-              height={750}
-            />
+            <Image src={poster} alt={movie.title} width={500} height={750} />
           ) : (
             <Image
               src={"/images/placeholders/default_user_avatar.png"}
@@ -169,29 +147,22 @@ export default function Home({ movie, user, userReview, poster }) {
           <h3>{movie.overview}</h3>
         </div>
 
-        <h1>Write a review : </h1>
-
-        <div className="reviewWriterBox">
-          {user?(
-            <ReviewWriter user={user} review={userReview} movie_id={movie.id}/>
-          ):(
-            
-            <Link className="active" href="/signup">
-              Sign Up
-            </Link>
-          )}
-        </div>
+        {user && (
+          <>
+            <h1>Write a review : </h1>
+            <div className="reviewWriterBox">
+              <ReviewWriter review={userReview} movie_id={movie.id} />
+            </div>
+          </>
+        )}
 
         <h1>User reviews : </h1>
 
-
         <div className="reviews">
-          {movie.reviews?.map((review, index)=>
-            <Review key={index} review={review}/>
-          )}
-          
+          {movie.reviews?.map((review, index) => (
+            <Review key={index} review={review} />
+          ))}
         </div>
-        
       </div>
     </Layout>
   );

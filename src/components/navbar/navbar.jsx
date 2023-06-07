@@ -6,8 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-
-
+import Avatar from "../avatar/Avatar";
 
 export default function NavBar({ searchBar }) {
   const hasSearch = searchBar != "hidden";
@@ -39,12 +38,11 @@ export default function NavBar({ searchBar }) {
     getAvatarUrl();
   }, [user, supabaseClient]);
 
-  
   const handleSignOut = async () => {
-    const supabase = createClientComponentClient()
-    await supabase.auth.signOut()
-  }
-  
+    const supabase = createClientComponentClient();
+    await supabase.auth.signOut();
+  };
+
   return (
     <header className="navBar">
       <div className="logo">
@@ -61,15 +59,10 @@ export default function NavBar({ searchBar }) {
       <div className="user">
         {user ? (
           <div>
-          <Link className="account" href="/account">
-            <Image
-              src={avatarUrl}
-              alt="profile picture"
-              height="20"
-              width="20"
-            />
-          </Link>
-          <Link className="active" href="/login" onClick={handleSignOut}>
+            <Link className="account" href="/account">
+              <Avatar user_id={user.id} height={30} width={30} />
+            </Link>
+            <Link className="active" href="/login" onClick={handleSignOut}>
               Sign out
             </Link>
           </div>
