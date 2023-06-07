@@ -102,6 +102,12 @@ export default function Home({ movies, user, avatarUrl }) {
 
   async function handleAvatarUpload(e) {
     const file = e.target.files[0];
+    
+    if (!file.type.includes("image/")) {
+      alert("Please upload an image file");
+      return;
+    }
+
     const { error } = await supabaseClient.storage
       .from("avatar")
       .upload(`${user.id}/${user.id}`, file, {
