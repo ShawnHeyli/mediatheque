@@ -60,7 +60,7 @@ export async function getServerSideProps(ctx) {
   return { props: { movie: movie, user: user, userReview: userReview, poster: poster, error: error } };
 }
 
-export default function Home({ movie, user, userReview, poster, error }) {
+export default function Home({ movie, user, userReview, poster }) {
   console.log(userReview)
 
   function datePropre(date) {
