@@ -6,6 +6,7 @@ import Image from "next/image";
 import Review from "@/components/review/review";
 import ReviewWriter from "@/components/reviewWriter/reviewWriter";
 import { useUser } from "@supabase/auth-helpers-react";
+import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
 
 export async function getServerSideProps(ctx) {
   const { id } = ctx.query;
@@ -33,15 +34,33 @@ export async function getServerSideProps(ctx) {
     )
     .eq("id", id)
     .single();
+    
+  const supabaseServer = createPagesServerClient(ctx);
+  var userReview = null;
+  
+  const {
+    data: { session },
+  } = await supabaseServer.auth.getSession(ctx);
+    
+  if(session){
+    const user = session.user;
+    
+    let { data: review } = await supabase
+      .from("reviews")
+      .select(`*`)
+      .eq("user_id", user.id)
+      .eq("movie_id", movie.id)
+      .single();
+    userReview = review;
+  }
 
   const poster = `https://dhnmuopflbpxbpisgvmk.supabase.co/storage/v1/object/public/posters/${movie.id}.jpg`;
 
-  return { props: { movie: movie, poster: poster, error: error } };
+  return { props: { movie: movie, userReview: userReview, poster: poster, error: error } };
 }
 
 // eslint-disable-next-line no-unused-vars
-export default function Home({ movie, poster, error }) {
-  var userReview = null;
+export default function Home({ movie, userReview, poster, error }) {
   const user = useUser();
 
   function datePropre(date) {

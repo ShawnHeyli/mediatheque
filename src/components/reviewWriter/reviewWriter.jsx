@@ -46,7 +46,8 @@ export default function ReviewWriter({ review, movie_id }) {
       });
     }
 
-    router.push("/movies/" + movie_id);
+    // Soft refresh
+    router.reload();
   }
 
   var reviewStars = [];
