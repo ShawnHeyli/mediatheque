@@ -49,7 +49,6 @@ export default function ReviewWriter({ user, review, movie_id }) {
             </button>
         ) 
     }
-
     
     return (
     <article className="reviewWriter">
@@ -63,10 +62,10 @@ export default function ReviewWriter({ user, review, movie_id }) {
                 />
             </div>
             <h3 className="pseudo">
-                {user.pseudonym}
+                {user.user_metadata.pseudo}
             </h3>
             <div className="rank">
-                {user.rank}
+                {user.role}
             </div>
         </div>
 

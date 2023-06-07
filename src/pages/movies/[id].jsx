@@ -5,9 +5,13 @@ import "./[id].scss";
 import Image from "next/image";
 import Review from "@/components/review/review";
 import ReviewWriter from "@/components/reviewWriter/reviewWriter";
+import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
+import Link from "next/link";
 
-export async function getServerSideProps({ query }) {
-  const { id } = query;
+export async function getServerSideProps(ctx) {
+  const { id } = ctx.query;
+  var user = null;
+  var userReview = null;
 
   let { data: movie, error } = await supabase
     .from("movies")
@@ -33,22 +37,31 @@ export async function getServerSideProps({ query }) {
     .eq("id", id)
     .single();
 
+  const supabaseServer = createPagesServerClient(ctx);
+  
+  const {
+    data: { session },
+  } = await supabaseServer.auth.getSession(ctx);
+  
+  if(session){
+    user = session.user;
+  
+    let { data: review } = await supabase
+      .from("reviews")
+      .select(`*`)
+      .eq("user_id", user.id)
+      .eq("movie_id", movie.id)
+      .single();
+    userReview = review;
+  }
+
   const poster = `https://dhnmuopflbpxbpisgvmk.supabase.co/storage/v1/object/public/posters/${movie.id}.jpg`
 
-  return { props: { movie: movie, poster: poster, error: error } };
+  return { props: { movie: movie, user: user, userReview: userReview, poster: poster, error: error } };
 }
 
-// eslint-disable-next-line no-unused-vars
-export default function Home({ movie, poster, error }) {
-  var user = {id: 1, pseudonym: "jamie", rank: "member"};
-  var userReview = null;
-  
-  movie.reviews.map((review) => {
-      if(review.users.id == user.id){
-        userReview = review;
-        user = review.users;
-      }
-    })
+export default function Home({ movie, user, userReview, poster, error }) {
+  console.log(userReview)
 
   function datePropre(date) {
     return (
@@ -159,7 +172,14 @@ export default function Home({ movie, poster, error }) {
         <h1>Write a review : </h1>
 
         <div className="reviewWriterBox">
-          <ReviewWriter user={user} review={userReview} movie_id={movie.id}/>
+          {user?(
+            <ReviewWriter user={user} review={userReview} movie_id={movie.id}/>
+          ):(
+            
+            <Link className="active" href="/signup">
+              Sign Up
+            </Link>
+          )}
         </div>
 
         <h1>User reviews : </h1>
