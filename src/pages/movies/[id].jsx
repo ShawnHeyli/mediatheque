@@ -9,8 +9,6 @@ import { useUser } from "@supabase/auth-helpers-react";
 
 export async function getServerSideProps(ctx) {
   const { id } = ctx.query;
-  var user = null;
-  var userReview = null;
 
   let { data: movie, error } = await supabase
     .from("movies")
