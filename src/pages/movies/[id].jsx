@@ -52,7 +52,10 @@ export async function getServerSideProps(ctx) {
       .eq("movie_id", movie.id)
       .single();
     userReview = review;
+    
   }
+
+  
 
   const poster = `https://dhnmuopflbpxbpisgvmk.supabase.co/storage/v1/object/public/posters/${movie.id}.jpg`;
 
@@ -62,7 +65,6 @@ export async function getServerSideProps(ctx) {
 // eslint-disable-next-line no-unused-vars
 export default function Home({ movie, userReview, poster, error }) {
   const user = useUser();
-
   function datePropre(date) {
     return (
       date.substring(8, 10) +

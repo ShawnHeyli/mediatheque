@@ -7,25 +7,13 @@ import "./account.scss";
 import { createPagesServerClient } from "@supabase/auth-helpers-nextjs";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
+import Review from "@/components/review/review";
+import supabase from '@/lib/supabase';
+
+
 
 export async function getServerSideProps(ctx) {
-  const supabaseServer = createPagesServerClient(ctx);
-
-  const {
-    data: { session },
-  } = await supabaseServer.auth.getSession(ctx);
-  const user = session.user;
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
-  /*
+   /*
   const {
     s = "",
     withgenres = "-1",
@@ -74,6 +62,42 @@ export async function getServerSideProps(ctx) {
     return { props: { movies, user: session.user } };
   }
   */
+  const supabaseServer = createPagesServerClient(ctx);
+
+  const {
+    data: { session },
+  } = await supabaseServer.auth.getSession(ctx);
+  
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  const user = session.user;
+
+  const { data: lastReviews } = await supabase
+  .from("reviews")
+  .select(`*,
+          movies( *,
+            genres ( * ),
+            keywords ( * ),
+            production_companies ( * ),
+            production_countries ( * ),
+            spoken_languages ( * ) )`)
+  .eq("user_id", user.id)
+  .order('date', { ascending: false })
+  .order('time', { ascending: false });
+
+  
+      
+  
+  
+ 
 
   const placeholderAvatarUrl = "/images/placeholders/default_user_avatar.png";
   const { data, error } = await supabaseServer.storage
@@ -89,12 +113,12 @@ export async function getServerSideProps(ctx) {
   let avatarUrl = error ? placeholderAvatarUrl : data.signedUrl;
 
   return {
-    props: { user, avatarUrl },
+    props: { user : user, avatarUrl : avatarUrl, lastReviews : lastReviews },
   };
 }
 
 // eslint-disable-next-line no-unused-vars
-export default function Home({ movies, user, avatarUrl }) {
+export default function Home({ movies, user, avatarUrl, lastReview, movie, lastReviews }) {
   const pseudo = user.user_metadata.pseudo;
   const router = useRouter();
 
@@ -122,6 +146,7 @@ export default function Home({ movies, user, avatarUrl }) {
     }
   }
 
+
   return (
     <Layout>
       <div className="account">
@@ -134,12 +159,17 @@ export default function Home({ movies, user, avatarUrl }) {
           />
           <h2>{pseudo}</h2>
         </div>
-        <h2>Last Review</h2>
+        <h2>Avatar upload</h2>
+        <input type="file" onChange={handleAvatarUpload} />
+        <h2>Your Last Reviews</h2>
+        <div className="reviews">
+          {lastReviews?.map((review, index) => (
+            <Review key={index} review={review} account={user} movie={review.movies} />
+          ))}
+        </div>
         <div className="reviewBox"></div>
         <h2>Most Liked Review</h2>
         <div className="reviewBox"></div>
-        <h2>Avatar upload</h2>
-        <input type="file" onChange={handleAvatarUpload} />
       </div>
     </Layout>
   );

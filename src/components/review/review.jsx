@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import "./review.scss";
 import Avatar from "../avatar/Avatar";
+import Card from "../card/card";
 
-export default function Review({ review }) {
+export default function Review({ review, account, movie }) {
   const [showMore, setShowMore] = useState(false);
   var reviewContent = [];
   var reviewStars = [];
-
+  
   const user = review.users;
+  
 
   if (review.content.length < 500) {
     reviewContent.push(
@@ -55,13 +57,24 @@ export default function Review({ review }) {
 
   return (
     <article className="review">
-      <div className="infoBox">
-        <div className="profilePicture">
-          <Avatar user_id={user.id} height={60} width={60} />
+      
+      {account ? (
+          <div className="infoBox">
+          <Card movie={movie}/>
         </div>
-        <h3 className="pseudo">{user.metadata.pseudo}</h3>
-      </div>
-
+        
+        ) : (
+            <div className="infoBox">
+          <div className="profilePicture">
+            <Avatar user_id={user.id} height={60} width={60} />
+          </div>
+          <div className="user">
+          
+        </div>
+          <h3 className="pseudo">{user.metadata.pseudo}</h3>
+        </div>
+        )}
+      
       <div className="reviewBox">
         <h2 className="title">{review.title}</h2>
         <div className="note">{reviewStars}</div>
