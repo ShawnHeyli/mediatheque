@@ -45,7 +45,7 @@ export default function ReviewWriter({ review, movie_id }) {
         movie_id: movie_id,
       });
     }
-
+    
     // Soft refresh
     router.reload();
   }

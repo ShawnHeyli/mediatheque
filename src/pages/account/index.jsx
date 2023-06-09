@@ -88,7 +88,10 @@ export async function getServerSideProps(ctx) {
             keywords ( * ),
             production_companies ( * ),
             production_countries ( * ),
-            spoken_languages ( * ) )`)
+            spoken_languages ( * ),
+            reviews ( * )
+            )
+            `)
   .eq("user_id", user.id)
   .order('date', { ascending: false })
   .order('time', { ascending: false });

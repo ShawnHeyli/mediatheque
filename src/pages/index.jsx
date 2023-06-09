@@ -52,7 +52,16 @@ export async function getServerSideProps({ query }) {
             keywords ( * ),
             production_companies ( * ),
             production_countries ( * ),
-            spoken_languages ( * )
+            spoken_languages ( * ),
+            reviews ( 
+              id,
+              title,
+              note, 
+              content,
+              date,
+              time,
+              users ( * )
+              )
           `
           ).order(sortBy, { ascending: order === order ? false : true })
           .range(offset, offset + pageSize - 1); 
@@ -71,7 +80,16 @@ export async function getServerSideProps({ query }) {
         keywords ( * ),
         production_companies ( * ),
         production_countries ( * ),
-        spoken_languages ( * )
+        spoken_languages ( * ),
+        reviews ( 
+          id,
+          title,
+          note, 
+          content,
+          date,
+          time,
+          users ( * )
+          )
       `
       ).order(sortBy, { ascending: order === orderBy ? false : true })
       .range(offset, offset + pageSize - 1); 
