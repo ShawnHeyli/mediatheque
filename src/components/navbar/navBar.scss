@@ -70,4 +70,12 @@ $transition: 0.3s;
 
 .user-account{
     height: 50%;
+
+    .profilePicture {
+        height: 40px;
+        width: 40px;
+        margin: 0 10px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
 }
