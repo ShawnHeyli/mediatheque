@@ -31,7 +31,7 @@ export default function NavBar({ searchBar }) {
       <div className="user">
         {user ? (
           <div>
-            <Link className="account" href="/account">
+            <Link className="user-account" href="/account">
               <Avatar user_id={user.id} height={30} width={30} />
             </Link>
             <Link className="active" href="/login" onClick={handleSignOut}>

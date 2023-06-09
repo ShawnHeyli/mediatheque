@@ -8,6 +8,7 @@ $transition: 0.3s;
     flex-direction: row;
     align-items: center;
     width: 100%;
+    height: 7%;
     margin-bottom: 5%;
     position: fixed;
     background-color: design.$Stroke;
@@ -67,6 +68,6 @@ $transition: 0.3s;
     background-color: design.$Tertiary;
 }
 
-.account{
+.user-account{
     height: 50%;
 }

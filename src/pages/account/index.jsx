@@ -162,16 +162,15 @@ export default function Home({ movies, user, avatarUrl, lastReview, movie, lastR
           />
           <h2>{pseudo}</h2>
         </div>
-        <h2>Avatar upload</h2>
-        <input type="file" onChange={handleAvatarUpload} />
+        <div className='upload-avatar'>
+          <input type="file" onChange={handleAvatarUpload} />
+        </div>
         <h2>Your Last Reviews</h2>
         <div className="reviews">
           {lastReviews?.map((review, index) => (
             <Review key={index} review={review} account={user} movie={review.movies} />
           ))}
         </div>
-        <div className="reviewBox"></div>
-        <h2>Most Liked Review</h2>
         <div className="reviewBox"></div>
       </div>
     </Layout>

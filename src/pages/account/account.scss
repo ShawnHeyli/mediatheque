@@ -4,8 +4,14 @@ $transition: 0.5s;
 
 .account {
   margin: 20px 25%;
+  margin-top: 5%;
   font-family: design.$font_title;
   text-align: center;
+
+  .upload-avatar{
+    text-align: left;
+    margin-top: 2%;
+  }
 
   .accountInfos{
     text-align: left;
