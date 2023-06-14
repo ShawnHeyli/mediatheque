@@ -1,40 +1,78 @@
-Gestion de projet
+## Organisation
 
-Pour commencer et pour s'organiser, nous avons créer un trello pour ordonner les différentes tâches à réaliser, créer le repo github et utiliser l'outil Figma pour réaliser 
-une maquette du site web que l'on voulait créer pour avoir les idées globals du design.
-Ensuite, nous nous sommes répartis les tâches de la façon suivante:
+### Trello
 
-- Hilan s'occupait principalement de la partie Backend du site: il s'oocupait de créer la base de données et des interactions entre elle et le site.
-- Nicolas et Louis s'occupaient de la partie frontend du site. chacun avait des pages à réaliser. Initialement, Nicolas s'occupait de la page des films uniques ainsi que des listes de films,
-tandis que Louis s'occupait du layout principal et de la page d'accueil.
+Afin de bien pourvoir répartir les tâches et de ne pas empiéter les uns sur les autres nous avons créer un Trello pour pouvoir suivre l'avancement du projet et savoir qui fait quoi.
 
-Au début, nous utilisions TheMovieDB, qui est une API utilisable directement depuis le web, pour commencer le front (liste des films, films, etc...), puis Hilan a créer la base de données
-sur supabase.
+### Github
 
-Pour ce qui est de la partie front: Nous avons suivi le modèle de Figma. Nous avions une palette de couleur ainsi qu'une police pré-définie (design.scss):
+Nous avons également créer un repo Github pour pouvoir travailler en équipe sur le projet, nous avons choisit Github car c'est une plateforme qui nous est plus familière que GitLab ce qui à permit par la suite l'implitation de workflows (ou Github actions).
 
-$Background : #16161a;
-$Headline : #fffffe ;
-$Paragraph : #94a1b2;
-$Button : #7f5af0;
-$Button_text : #fffffe;
+Nous n'avons pas utilisé de flow comme [Gitflow](https://www.atlassian.com/fr/git/tutorials/comparing-workflows/gitflow-workflow) car nous avons jugé que ce n'était pas nécéssaire pour un projet de cette taille et en particulier car le projet est un site web où tout est assez séparé pour ne pas avoir à se géner entre nous.
 
-$Stroke : #010101;
-$Main : #fffffe;
-$Highlight : #7f5af0;
-$Secondary : #72757e;
-$Tertiary : #2cb67d;
+> A noter que certaines branches existe sur le repo mais sont liés à une utilisation solitaire de celles ci et ne sont pas vraiment liés au projet en lui même.
 
-$font_title: 'Helvetica', 'Arial', sans-serif;
+### Figma
 
-$transition: 0.5s;
-$transitionShort: 0.3s;
+Nous avons utilisé Figma pour pouvoir créer une maquette du site et avoir une idée de ce que nous voulions faire.
+Cette étape nous as aussi aider à définir des primitives en avances pour nos fichiers globals de CSS.
 
-Tout notre projet s'est divisisé en 2 grandes parties: 
+## Répartition des tâches
 
-- Tout d'abord la partie Film; qui consistait à gérer la base de données côté film, montrer des listes de films, faire la page de recherche des films avec les filtres et enfin à la création des pages unique des films. (3 semaines de travail)
-- Puis, nous nous sommes occupés de la partie Utilisateur; qui consistait à gérer la base de données pour la gestion des comptes utilisateur, à la création de comptes sur la page signup,
-la connexion sur la page login, à la visualisation de son profil sur la page account, avec les commentaires (fait sur les films) associés aux comptes et enfin à visualiser tous les commentaires d'un film sur la page des films uniques.(3 semaines de travail)
+### Début du projet
 
+#### Hilan
+
+- Mise en place de Github et des workflows
+- Création de la base de données sur Supabase
+- Mise en place de la solution d'hébergement (Vercel)
+- Extraction des données de notre [dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata) et insertion dans la base de données
+- Création des défauts (linting, formatage)
+
+#### Louis
+
+- Mise en place de Figma et implantation du design global
+- Création du layout global du site (barre de navigation, footer, couleur, police, etc...)
+- Création de la page d'accueil avec présentation
 
 
+#### Nicolas
+
+
+
+### Milieu du projet
+
+#### Hilan
+
+- Système d'authentification lié à Supabase (connexion, inscription, déconnexion) et fetch cohérent avec les autorisations de l'utilisateur connecté.
+- Création d'un middleware nécéssaire pour se protéger des attaques communes (CSRF, XSS, etc...).
+- Documentation sous forme de page d'example (voir les routes `/example`, `/example/server` et `/example/client`).
+
+#### Louis
+
+- Implémentation du design des pages de connexion et d'inscription.
+- Incorporation des listes de films par catégorie: les plus populaires, les mieux votés, les plus récents et les meilleurs films par genre (ici film d'animation).
+- Création de la page "about us" non terminée
+- Amélioration du design de la page d'accueil: ajout d'images, de boutons "espace client" et "nous rejoindre". 
+
+#### Nicolas
+
+
+
+### Fin du projet
+
+#### Hilan
+
+- Création d'un système d'avatar pour les utilisateurs (upload d'image, affichage de l'image) avec des vérification sur la taille et le typeContent (image/png, file/pdf, etc...) pour protéger le site.
+- Barre de navigation consciente de l'état de connexion de l'utilisateur.
+
+#### Louis
+
+- Création de DESIGN.pdf, INSTALL.md
+- Ajout d'un bouton de deconnexion sur la barre de navigation, en lien avec l'état de connexion de l'utilisateur
+- Gestion de l'état de connexion de l'utilisateur sur les boutons "espace client" et "nous rejoindre". 
+- Fixation des problèmes globals de css, et gestion mineur du responsive. 
+- Finalisation de la page "about us"
+
+
+#### Nicolas
