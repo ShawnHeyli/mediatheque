@@ -33,7 +33,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# document de gestion de projet
-
-gestion_de_projet.txt

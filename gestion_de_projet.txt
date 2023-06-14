@@ -1,0 +1,40 @@
+Gestion de projet
+
+Pour commencer et pour s'organiser, nous avons créer un trello pour ordonner les différentes tâches à réaliser, créer le repo github et utiliser l'outil Figma pour réaliser 
+une maquette du site web que l'on voulait créer pour avoir les idées globals du design.
+Ensuite, nous nous sommes répartis les tâches de la façon suivante:
+
+- Hilan s'occupait principalement de la partie Backend du site: il s'oocupait de créer la base de données et des interactions entre elle et le site.
+- Nicolas et Louis s'occupaient de la partie frontend du site. chacun avait des pages à réaliser. Initialement, Nicolas s'occupait de la page des films uniques ainsi que des listes de films,
+tandis que Louis s'occupait du layout principal et de la page d'accueil.
+
+Au début, nous utilisions TheMovieDB, qui est une API utilisable directement depuis le web, pour commencer le front (liste des films, films, etc...), puis Hilan a créer la base de données
+sur supabase.
+
+Pour ce qui est de la partie front: Nous avons suivi le modèle de Figma. Nous avions une palette de couleur ainsi qu'une police pré-définie (design.scss):
+
+$Background : #16161a;
+$Headline : #fffffe ;
+$Paragraph : #94a1b2;
+$Button : #7f5af0;
+$Button_text : #fffffe;
+
+$Stroke : #010101;
+$Main : #fffffe;
+$Highlight : #7f5af0;
+$Secondary : #72757e;
+$Tertiary : #2cb67d;
+
+$font_title: 'Helvetica', 'Arial', sans-serif;
+
+$transition: 0.5s;
+$transitionShort: 0.3s;
+
+Tout notre projet s'est divisisé en 2 grandes parties: 
+
+- Tout d'abord la partie Film; qui consistait à gérer la base de données côté film, montrer des listes de films, faire la page de recherche des films avec les filtres et enfin à la création des pages unique des films. (3 semaines de travail)
+- Puis, nous nous sommes occupés de la partie Utilisateur; qui consistait à gérer la base de données pour la gestion des comptes utilisateur, à la création de comptes sur la page signup,
+la connexion sur la page login, à la visualisation de son profil sur la page account, avec les commentaires (fait sur les films) associés aux comptes et enfin à visualiser tous les commentaires d'un film sur la page des films uniques.(3 semaines de travail)
+
+
+
