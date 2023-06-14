@@ -33,3 +33,4 @@ You can now open [http://localhost:3000](http://localhost:3000) with your browse
 ## Data Model
 
 ![Supabase](media/supabase_schema.png)
+> Made with [Supabase Schema](https://supabase-schema.vercel.app/) made by [zernonia](https://github.com/zernonia)
