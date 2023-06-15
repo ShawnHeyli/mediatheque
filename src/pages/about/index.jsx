@@ -32,8 +32,8 @@ export default function About (){
             <div className="container-card">
                 <h2>Nicolas BUCHIN</h2>
                 <p className="title">Student L3 IT</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
+                <p>Problem solver and AI aficionado.</p>
+                <p>nicolas.buchin@etudiant.univ-rennes.fr</p>
             </div>
             </div>
         </div>

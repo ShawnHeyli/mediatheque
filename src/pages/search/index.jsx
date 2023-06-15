@@ -61,7 +61,7 @@ export default function Home({ movies, genres, page, pageSize, movieCount, s, wi
 
   //change la taille de la liste
   function updateSize() {
-    setSize(Math.max(Math.min(Math.floor((window.innerWidth)/250),4), 1));
+    setSize(Math.max(Math.min(Math.floor((window.innerWidth - 300)/250),4), 1));
   }
 
   //liens vers la page

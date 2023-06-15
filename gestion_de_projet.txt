@@ -35,10 +35,11 @@ Cette étape nous as aussi aider à définir des primitives en avances pour nos 
 - Création du layout global du site (barre de navigation, footer, couleur, police, etc...)
 - Création de la page d'accueil avec présentation
 
-
 #### Nicolas
 
-
+- Aide à la création du design global
+- Création cartes des films ainsi que leurs carrousels
+- Organisation des composants et création de la fiche de référence css pour les variables de designs
 
 ### Milieu du projet
 
@@ -57,7 +58,12 @@ Cette étape nous as aussi aider à définir des primitives en avances pour nos 
 
 #### Nicolas
 
-
+- Création et implémentation des pages des films
+- Création du logo du site
+- Récupérations des affiches des films pour notre base de données
+- Création des reviews et liaison a la base de données
+- Création et implémentation de la barre de recherche
+- Création et implémentation de la page de recherche avec tous les filtres (ainsi que les fonctions nécessaires dans la base de données)
 
 ### Fin du projet
 
@@ -74,5 +80,7 @@ Cette étape nous as aussi aider à définir des primitives en avances pour nos 
 - Fixation des problèmes globals de css, et gestion mineur du responsive. 
 - Finalisation de la page "about us"
 
-
 #### Nicolas
+
+- Finalisation de l'implémentation des reviews modifiables ainsi que leurs connections aux comptes clients
+- Refontes des css pour régler quelques problèmes et tout mettre à jour
